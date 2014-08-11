@@ -1,0 +1,57 @@
+source 'https://rubygems.org'
+
+gem 'rails', '4.1.4'
+
+gem 'pg'
+
+# Assets
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'execjs'
+gem 'ejs'
+gem 'therubyracer',  platforms: :ruby
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'haml'
+
+# Views
+gem 'simple_form', '3.1.0.rc1'
+gem 'draper'
+gem 'navigasmic'
+gem 'chart-js-rails'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0',          group: :doc
+
+# Encryption
+gem 'bcrypt', '~> 3.1.7'
+gem 'cancancan'
+
+# Background processing
+gem 'sidekiq'
+
+gem 'rubocop'
+
+group :development do
+  gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'letter_opener'
+  gem 'meta_request'
+  gem 'sinatra', '>= 1.3.0', :require => nil
+end
+
+group :development, :test do
+  gem 'pry-rails'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end

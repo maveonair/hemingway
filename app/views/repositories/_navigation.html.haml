@@ -1,0 +1,6 @@
+%nav.navbar.navbar-default.navbar-repository{role: "navigation"}
+  %p.navbar-title= "#{octicon('mark-github')} #{repository.github_repo_name}".html_safe
+  .container-fluid
+    = semantic_navigation :primary, :config => :bootstrap do |n|
+      - n.item 'Feed', repository
+      - n.item 'Trends', '/trends'

@@ -1,0 +1,40 @@
+= render 'repositories/navigation', :repository => @run.repository
+
+.inspections
+  %ol.breadcrumb
+    %li= link_to @run.github_repo_name, @run.repository
+    %li.active= @run.sequence
+
+  .row
+    .col-md-9
+      .panel.panel-default
+        %table.table.table-striped
+          %thead
+            %tr
+              %th File path
+              %th.text-right Offenses
+          %tbody
+            - @run.inspections.each do |inspection|
+              %tr
+                %td= link_to inspection.file_path, polymorphic_path([:inspect, @run.repository, @run], :file_path => inspection.file_path)
+                %td.text-right= inspection.offenses.size
+
+    .col-md-3
+      .panel.panel-default
+        .panel-body
+          .commit.text-muted
+            You are looking at
+            %code= @run.commit
+
+      .panel.panel-default
+        .panel-heading Severities
+        .panel-body
+          %canvas#severities_count{:width => '200px'}
+
+
+
+:coffeescript
+  $ ->
+    severitiesCount = JSON.parse('#{Run::Report.new(@run).severities_count}')
+
+    new Chart($("#severities_count").get(0).getContext("2d")).Doughnut(severitiesCount)

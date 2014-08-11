@@ -1,0 +1,19 @@
+.inspections {
+  table {
+    td:first-child {
+      width: 80%;
+    }
+  }
+}
+
+.inspections #severities_count {
+  padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.inspections .commit {
+  text-align: center;
+}

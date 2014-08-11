@@ -1,0 +1,23 @@
+= render 'repositories/navigation', :repository => @run.repository
+
+.inspections
+  %ol.breadcrumb
+    %li= link_to @run.github_repo_name, @run.repository
+    %li= link_to @run.sequence, [@run.repository, @run]
+    %li.active= @inspection.file_path
+
+  .panel.panel-default
+    %table.table
+      %thead
+        %tr
+          %th Line
+          %th.text-center Severity
+          %th Message
+          %th
+      %tbody
+        - @inspection.offenses.each do |offense|
+          %tr
+            %th= offense.line_number
+            %td.text-center= severity_label(offense.severity)
+            %td= offense.message
+            %td= link_to "#{octicon('link')} GitHub".html_safe, github_blame_url(@run, @inspection.file_path, offense.line_number), :target => :blank, :class => 'btn btn-default btn-xs'

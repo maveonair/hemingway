@@ -1,0 +1,27 @@
+.runs {
+  table {
+    th {
+      text-align: center;
+    }
+
+    th:first-child {
+      width: 45px;
+    }
+
+    td {
+      text-align: right;
+    }
+
+    td:first-child {
+      text-align: center;
+    }
+
+    td.commit {
+      text-align: center;
+    }
+
+    td.actions {
+      text-align: center;
+    }
+  }
+}
