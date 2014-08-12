@@ -1,6 +1,9 @@
 %nav.navbar.navbar-default.navbar-repository{role: "navigation"}
-  %p.navbar-title= "#{octicon('mark-github')} #{repository.github_repo_name}".html_safe
-  .container-fluid
-    = semantic_navigation :primary, :config => :bootstrap do |n|
-      - n.item 'Feed', repository
-      - n.item 'Trends', '/trends'
+  = semantic_navigation :primary, :config => :bootstrap do |n|
+    - n.item "#{octicon('mark-github')} #{repository.github_repo_name}".html_safe, repository, :class => 'repo-title'
+    - n.group 'placeholder' do
+      - Repository.all.each do |repo|
+        - n.item  repo.github_repo_name, repo
+      - n.item 'Repositories', :repositories, :class => 'repositories'
+    - n.item 'Inspections', repository
+    - n.item 'Trends', '/trends'

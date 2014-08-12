@@ -11,6 +11,10 @@ class Run::Offense
     @data[:message]
   end
 
+  def cop_name
+    @data[:cop_name]
+  end
+
   def location
     @data[:location]
   end

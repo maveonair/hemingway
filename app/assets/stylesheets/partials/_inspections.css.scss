@@ -1,8 +1,11 @@
-.inspections {
-  table {
-    td:first-child {
-      width: 80%;
-    }
+.inspections table.table-statistic {
+  td:first-child {
+    width: 80%;
+    text-align: left;
+  }
+
+  td {
+    text-align: right;
   }
 }
 

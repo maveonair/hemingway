@@ -2,24 +2,26 @@
 
 .runs
   .panel.panel-default
-    %table.table.table-striped
+    %table.table.table-striped.table-statistic
       %thead
         %tr
           %th #
-          %th Offenses
-          %th Inspected files
-          %th Files
           %th Commit
+          %th.statistic Conventions
+          %th.statistic Warnings
+          %th.statistic Errors
+          %th.statistic Fatals
           %th
       %tbody
         - @repository.runs.each do |run|
           %tr
             %td= sequence_label(run)
-            %td= run.summary.total_offenses
-            %td= run.summary.total_inspected_files
-            %td= run.summary.total_files
             %td.commit
               %code= run.commit
+            %td.statistic= run.statistic.total_conventions
+            %td.statistic= run.statistic.total_warnings
+            %td.statistic= run.statistic.total_errors
+            %td.statistic= run.statistic.total_fatals
             %td.actions= link_to 'Details', [@repository, run], :class => 'btn btn-default btn-xs'
 
   .pull-right= link_to "#{octicon('sync')} New run".html_safe, [:start_run, @repository], method: :post, :class => 'btn btn-default'

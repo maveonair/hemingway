@@ -1,6 +1,7 @@
 class RunsController < ApplicationController
+  before_filter :set_run
+
   def show
-    @run = Run.find(params[:id])
     @run = @run.decorate
 
     respond_to do |format|
@@ -10,9 +11,16 @@ class RunsController < ApplicationController
   end
 
   def inspect
-    @run = Run.find(params[:id])
     @run = @run.decorate
 
     @inspection = @run.inspection(params[:file_path])
   end
+
+  private
+
+  def set_run
+    repository = Repository.find(params[:repository_id])
+    @run = repository.runs.find(params[:id])    
+  end
+
 end

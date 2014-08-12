@@ -115,15 +115,18 @@ Navigasmic.setup do |config|
 
     # Set the classed for items that have nested items, and that are nested items.
     builder.has_nested_class = 'dropdown'
-    builder.is_nested_class = 'dropdown-menu'
+    builder.is_nested_class = 'dropdown-menu dropdown-menu-right'
 
     # For dropdowns to work you'll need to include the bootstrap dropdown js
     # For groups, we adjust the markup so they'll be clickable and be picked up by the javascript.
     builder.label_generator = proc do |label, options, has_link, has_nested|
       if !has_nested || has_link
         "<span>#{label}</span>"
+      elsif label == 'placeholder'
+        # Only show chevron
+        link_to("<b class='octicon octicon-chevron-down'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'})
       else
-        link_to("#{label}<b class='caret'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'})
+        link_to("#{label}<b class='octicon octicon-chevron-down'></b>".html_safe, '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'})
       end
     end
 
@@ -132,7 +135,7 @@ Navigasmic.setup do |config|
     builder.link_generator = proc do |label, link, link_options, has_nested|
       if has_nested
         link = '#'
-        label << "<b class='caret'></b>"
+        label << "<b class='octicon octicon-chevron-down'></b>"
         link_options.merge!(class: 'dropdown-toggle', data: {toggle: 'dropdown'})
       end
       link_to(label, link, link_options)

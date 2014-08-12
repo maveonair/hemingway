@@ -1,6 +1,6 @@
 .runs {
   table {
-    th {
+    th.statistic {
       text-align: center;
     }
 
@@ -17,10 +17,15 @@
     }
 
     td.commit {
-      text-align: center;
+      text-align: left;
+    }
+
+    td.statistic {
+      width: 100px;
     }
 
     td.actions {
+      width: 100px;
       text-align: center;
     }
   }

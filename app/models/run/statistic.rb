@@ -1,4 +1,4 @@
-class Run::Report
+class Run::Statistic
   def initialize(run)
     @run = run
   end
@@ -13,16 +13,37 @@ class Run::Report
     end.to_json
   end
 
-  private
+  def total_conventions
+    total_severity(:convention)
+  end
 
-  def severities
-    @severities ||= @run.inspections.map(&:offenses).flatten.map(&:severity)
+  def total_warnings
+    total_severity(:warning)
+  end
+
+  def total_errors
+    total_severity(:error)
+  end
+
+  def total_fatals
+    total_severity(:fatal)
   end
 
   def measurements
     @measurements ||= severities.group_by { |s| s}.map do |k, v|
       OpenStruct.new(:label => k, :value => v.count)
     end
+  end
+
+  private
+
+  def total_severity(symbol)
+    measurement = measurements.select { |m| m.label == symbol.to_s}.first
+    measurement.present? ? measurement.value : 0
+  end
+
+  def severities
+    @severities ||= @run.inspections.map(&:severities).flatten
   end
 
   def colors

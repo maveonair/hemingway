@@ -25,6 +25,10 @@ class Run < ActiveRecord::Base
     @parsed__result ||= JSON.parse(result, symbolize_names: true)
   end
 
+  def statistic
+    Run::Statistic.new(self)
+  end
+
   private
 
   def set_sequence
