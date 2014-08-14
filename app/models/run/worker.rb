@@ -16,38 +16,28 @@ class Run::Worker
   end
 
   def run!
-    commit = git_checkout
-    passed, result = analyze_code
+    git_stats = git_wrapper.checkout(@repository.github_repository_url)
+    rubocop_stats = rubocop_wrapper.analyze_code
 
-    run = @repository.runs.build(:commit => commit, :passed => passed, :result => result)
-    run.save!
+    @repository.runs.build.tap do |run|
+      run.author = git_stats.author
+      run.revision = git_stats.revision
+      run.log = git_stats.log
+      run.passed = rubocop_stats.passed
+      run.result = rubocop_stats.result
+      run.save!
+    end
   end
 
   private
 
-  def git_checkout
-    Dir.chdir(@working_directory) do
-      git_clone = "git clone #{@repository.github_url} #{@working_directory}"
-      system(*git_clone)
-
-      git_commit_revision
-    end
+  def git_wrapper
+    GitWrapper.new(@working_directory)
   end
 
-  def git_commit_revision
-    `git rev-parse HEAD`.strip
+  def rubocop_wrapper
+    RubocopWrapper.new(@working_directory)
   end
 
-  def analyze_code
-    Dir.chdir(@working_directory) do
-      command = ['rubocop']
-      command.concat(['--format', 'json', '--out', json_file_path, '--force-exclusion'])
-      passed = system(*command)
-      return passed, File.read(json_file_path)
-    end
-  end
 
-  def json_file_path
-    @json_file_path ||= "#{@working_directory}/results.json"
-  end
 end

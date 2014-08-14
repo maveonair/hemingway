@@ -3,16 +3,6 @@ class Run::Statistic
     @run = run
   end
 
-  def severities_count
-    measurements.map do |measurement|
-      {
-        :label => measurement.label,
-        :value => measurement.value,
-        :color => colors[measurement.label.to_sym]
-      }
-    end.to_json
-  end
-
   def total_conventions
     total_severity(:convention)
   end
@@ -27,6 +17,10 @@ class Run::Statistic
 
   def total_fatals
     total_severity(:fatal)
+  end
+
+  def errors?
+    (total_warnings + total_errors + total_fatals) > 0
   end
 
   def measurements
@@ -44,15 +38,5 @@ class Run::Statistic
 
   def severities
     @severities ||= @run.inspections.map(&:severities).flatten
-  end
-
-  def colors
-    {
-      :convention => '#FECEA8',
-      :warning => '#FF847C',
-      :refactor => '#2A363B',
-      :error => '#E84A5F',
-      :fatal => '#F7464A'
-    }
   end
 end

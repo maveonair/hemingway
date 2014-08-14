@@ -1,11 +1,11 @@
-%nav.navbar.navbar-default.navbar-repository{role: "navigation"}
-  .container-fluid
-    %p.navbar-text Repositories
-    = link_to 'Add GitHub Repository', '/', :class => 'btn btn-default navbar-btn navbar-right'
-
 .repositories
-  .panel.panel-default
-    %table.table.table-striped
-      - @repositories.each do |repository|
-        %tr
-          %td= link_to repository.github_repo_name, repository
+  %ol.breadcrumb.breadcrumb-navigation
+    %li= link_to octicon('home'), :root
+    %li.active Repositories
+
+    .actions.pull-right
+      = link_to [:new, :repository] ,class: 'btn btn-default btn-xs' do
+        = octicon('plus')
+        Add repository
+
+  = render 'repositories'

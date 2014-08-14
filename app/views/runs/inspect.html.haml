@@ -1,23 +1,21 @@
-= render 'repositories/navigation', :repository => @run.repository
-
-.inspections
-  %ol.breadcrumb
+.inspection
+  %ol.breadcrumb.breadcrumb-navigation
+    %li= link_to octicon('home'), :repositories
     %li= link_to @run.github_repo_name, @run.repository
     %li= link_to @run.sequence, [@run.repository, @run]
     %li.active= @inspection.file_path
 
-  .panel.panel-default
-    %table.table.table-inspect
-      %thead
+  %table.table.table-inspect
+    %thead
+      %tr
+        %th Line
+        %th.text-center Severity
+        %th Message
+        %th
+    %tbody
+      - @inspection.offenses.each do |offense|
         %tr
-          %th Line
-          %th.text-center Severity
-          %th Message
-          %th
-      %tbody
-        - @inspection.offenses.each do |offense|
-          %tr
-            %th= offense.line_number
-            %td.text-center= severity_label(offense.severity)
-            %td= offense.message
-            %td.text-right= link_to "#{octicon('link')} GitHub".html_safe, github_blame_url(@run, @inspection.file_path, offense.line_number), :target => :blank, :class => 'btn btn-default btn-xs'
+          %th= offense.line_number
+          %td.text-center= severity_label(offense.severity)
+          %td= offense.message
+          %td.text-right= link_to "#{octicon('link')} GitHub".html_safe, github_blame_url(@run, @inspection.file_path, offense.line_number), :target => :blank, :class => 'btn btn-default btn-xs'

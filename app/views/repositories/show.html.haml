@@ -1,27 +1,36 @@
-= render 'navigation', :repository => @repository
+.repository
+  %ol.breadcrumb.breadcrumb-navigation
+    %li= link_to octicon('home'), :repositories
+    %li.active= @repository.github_repo_name
 
-.runs
-  .panel.panel-default
-    %table.table.table-striped.table-statistic
-      %thead
+    .actions.pull-right
+      = link_to [:start_run, @repository], method: :post, class: 'btn btn-default btn-xs' do
+        = octicon('sync')
+        Rerun
+
+  %table.table
+    %thead
+      %tr
+        %th Run
+        %th Revision
+        %th Author
+        %th Log
+        %th.text-right Conventions
+        %th.text-right Warnings
+        %th.text-right Errors
+        %th.text-right Fatals
+        %th Status
+        %th
+    %tbody
+      - @repository.runs.each do |run|
         %tr
-          %th #
-          %th Commit
-          %th.statistic Conventions
-          %th.statistic Warnings
-          %th.statistic Errors
-          %th.statistic Fatals
-          %th
-      %tbody
-        - @repository.runs.each do |run|
-          %tr
-            %td= sequence_label(run)
-            %td.commit
-              %code= run.commit
-            %td.statistic= run.statistic.total_conventions
-            %td.statistic= run.statistic.total_warnings
-            %td.statistic= run.statistic.total_errors
-            %td.statistic= run.statistic.total_fatals
-            %td.actions= link_to 'Details', [@repository, run], :class => 'btn btn-default btn-xs'
-
-  .pull-right= link_to "#{octicon('sync')} New run".html_safe, [:start_run, @repository], method: :post, :class => 'btn btn-default'
+          %td= run.sequence
+          %td= run.revision
+          %td= run.author
+          %td= run.log
+          %td.conventions= run.statistic.total_conventions
+          %td.warnings= run.statistic.total_warnings
+          %td.errors= run.statistic.total_errors
+          %td.fatals= run.statistic.total_fatals
+          %td.passed= run.status
+          %td.actions= link_to 'Details', [@repository, run], :class => 'btn btn-default btn-xs'

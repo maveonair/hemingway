@@ -21,5 +21,6 @@ module Hemingway
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
+    config.autoload_paths    << Rails.root.join('lib')
   end
 end

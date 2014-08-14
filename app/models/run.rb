@@ -1,11 +1,13 @@
 class Run < ActiveRecord::Base
   belongs_to :repository
 
-  validates :repository, :presence => true
+  validates :author, presence: true
+  validates :revision, presence: true
+  validates :repository, presence: true
 
-  delegate :github_repo_name, :to => :repository
+  delegate :github_repo_name, to: :repository
 
-  default_scope { order(:sequence => :desc) }
+  default_scope { order(sequence: :desc) }
 
   before_create :set_sequence
 

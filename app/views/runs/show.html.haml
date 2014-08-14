@@ -1,24 +1,22 @@
-= render 'repositories/navigation', :repository => @run.repository
-
 .inspections
-  %ol.breadcrumb
+  %ol.breadcrumb.breadcrumb-navigation
+    %li= link_to octicon('home'), :repositories
     %li= link_to @run.github_repo_name, @run.repository
     %li.active= @run.sequence
 
-  .panel.panel-default
-    %table.table.table-striped.table-statistic
-      %thead
+  %table.table
+    %thead
+      %tr
+        %th File path
+        %th Conventions
+        %th Warnings
+        %th Errors
+        %th Fatals
+    %tbody
+      - @run.inspections.each do |inspection|
         %tr
-          %th File path
-          %th Conventions
-          %th Warnings
-          %th Errors
-          %th Fatals
-      %tbody
-        - @run.inspections.each do |inspection|
-          %tr
-            %td= link_to inspection.file_path, polymorphic_path([:inspect, @run.repository, @run], :file_path => inspection.file_path)
-            %td= inspection.total_conventions
-            %td= inspection.total_warnings
-            %td= inspection.total_errors
-            %td= inspection.total_fatals
+          %td= link_to inspection.file_path, polymorphic_path([:inspect, @run.repository, @run], :file_path => inspection.file_path)
+          %td.conventions= inspection.total_conventions
+          %td.warnings= inspection.total_warnings
+          %td.erros= inspection.total_errors
+          %td.fatals= inspection.total_fatals

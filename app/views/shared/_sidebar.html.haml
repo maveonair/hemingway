@@ -1,0 +1,17 @@
+.sidebar-content
+  //= form_tag search_path, :method => :get, :class => 'search-form' do
+  //= text_field_tag :query, params[:query], :placeholder => 'Search', :class => 'form-control'
+
+  %ul.list-unstyled
+    %li
+      = link_to mega_octicon(:person), [:repositories]
+    %li
+      = link_to mega_octicon(:repo), [:repositories]
+
+.sidebar-footer
+  Hemingway
+//  = link_to [:settings, :account] do
+//    = image_tag current_user.decorate.icon_url, :class => 'img-circle'
+//    = current_user.name
+//  = link_to [:logout] do
+//    %span.glyphicon.glyphicon-log-out
