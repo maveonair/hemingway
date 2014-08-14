@@ -28,6 +28,6 @@ class Ability
   end
 
   def set_runs_ability
-    can [:read, :inspect], Run, repository: { user_id: @user.id}
+    can [:read, :inspect], Run, repository: { user_id: @user.id }
   end
 end

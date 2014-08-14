@@ -2,7 +2,7 @@ class RunsController < ApplicationController
   load_and_authorize_resource :repository
   load_and_authorize_resource :run, through: :repository
 
-  before_filter :decorate_run
+  before_action :decorate_run
 
   def inspect
     @inspection = @run.inspection(params[:file_path])
