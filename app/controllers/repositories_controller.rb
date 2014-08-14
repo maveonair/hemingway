@@ -21,6 +21,8 @@ class RepositoriesController < ApplicationController
     if @repository.save
       redirect_to @repository
     else
+      raise error
+      @service = User::GithubService.new(current_user)
       render 'new'
     end
   end
