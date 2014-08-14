@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-describe Repository, :type => :model do
+describe Repository, type: :model do
   let(:phrase) { repositories(:phrase) }
   let(:kado) { repositories(:kado) }
 
   it 'locks the repository' do
     expect(phrase.locked?).to be false
-
     phrase.lock!
     expect(phrase.locked?).to be true
   end

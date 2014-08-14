@@ -1,7 +1,7 @@
 class Run::Worker
   include Sidekiq::Worker
 
-  sidekiq_options :retry => false
+  sidekiq_options retry: false
 
   def perform(repository_id)
     @repository = Repository.find(repository_id)

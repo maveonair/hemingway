@@ -12,7 +12,7 @@ class User::GithubService
   end
 
   def repositories
-    @repositories ||= octokit.repos.select { |repo| repo.language == 'Ruby'}
+    @repositories ||= octokit.repos.select { |repo| repo.language == 'Ruby' }
   end
 
   def repositories_names

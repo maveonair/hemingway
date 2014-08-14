@@ -11,7 +11,8 @@ class RunDecorator < Draper::Decorator
 
   def status
     return success_label if model.passed?
-    return failed_label if model.statistic.errors?    
+    return failed_label if model.statistic.errors?
+
     violated_label
   end
 

@@ -24,15 +24,15 @@ class Run::Statistic
   end
 
   def measurements
-    @measurements ||= severities.group_by { |s| s}.map do |k, v|
-      OpenStruct.new(:label => k, :value => v.count)
+    @measurements ||= severities.group_by { |s| s }.map do |k, v|
+      OpenStruct.new(label: k, value: v.count)
     end
   end
 
   private
 
   def total_severity(symbol)
-    measurement = measurements.select { |m| m.label == symbol.to_s}.first
+    measurement = measurements.select { |m| m.label == symbol.to_s }.first
     measurement.present? ? measurement.value : 0
   end
 
