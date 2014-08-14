@@ -1,5 +1,10 @@
 AllCops:
   RunRailsCops: true
 
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+
 Style/Documentation:
   Enabled: false
