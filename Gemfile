@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Authentication, Authorization
 gem 'bcrypt', '~> 3.1.7'
-gem 'cancancan'
+gem 'cancancan', '~> 1.9'
 gem "omniauth-github", '1.1.2'
 gem 'octokit', '~> 3.0'
 

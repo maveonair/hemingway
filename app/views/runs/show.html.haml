@@ -1,7 +1,7 @@
 .inspections
   %ol.breadcrumb.breadcrumb-navigation
     %li= link_to octicon('home'), :repositories
-    %li= link_to @run.github_repo_name, @run.repository
+    %li= link_to @run.name, @run.repository
     %li.active= @run.sequence
 
   %table.table

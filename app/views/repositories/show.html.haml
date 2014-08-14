@@ -1,7 +1,7 @@
 .repository
   %ol.breadcrumb.breadcrumb-navigation
     %li= link_to octicon('home'), :repositories
-    %li.active= @repository.github_repo_name
+    %li.active= @repository.name
 
     .actions.pull-right
       = link_to [:start_run, @repository], method: :post, class: 'btn btn-default btn-xs' do

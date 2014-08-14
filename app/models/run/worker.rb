@@ -16,7 +16,7 @@ class Run::Worker
   end
 
   def run!
-    git_stats = git_wrapper.checkout(@repository.github_repository_url)
+    git_stats = git_wrapper.checkout(@repository.github_url)
     rubocop_stats = rubocop_wrapper.analyze_code
 
     @repository.runs.build.tap do |run|
@@ -38,6 +38,4 @@ class Run::Worker
   def rubocop_wrapper
     RubocopWrapper.new(@working_directory)
   end
-
-
 end

@@ -1,0 +1,5 @@
+AllCops:
+  RunRailsCops: true
+
+Style/Documentation:
+  Enabled: false

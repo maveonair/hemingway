@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
+  skip_filter :authorize
+  layout 'guest'
+
   def index
-    @repository = Repository.new
   end
 end

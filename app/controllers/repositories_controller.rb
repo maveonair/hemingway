@@ -1,20 +1,23 @@
 class RepositoriesController < ApplicationController
+  load_and_authorize_resource
+  skip_load_resource only: :create
 
   def index
-    @repositories = RepositoryDecorator.decorate_collection(Repository.all)
+    @repositories = RepositoryDecorator.decorate_collection(@repositories)
   end
 
   def show
-    @repository = Repository.find(params[:id])
     @repository = @repository.decorate
   end
 
   def new
-    @repository = Repository.new
+    @service = User::GithubService.new(current_user)
   end
 
   def create
     @repository =  Repository.new(repository_params)
+    @repository.user = current_user
+
     if @repository.save
       redirect_to @repository
     else
@@ -23,16 +26,15 @@ class RepositoriesController < ApplicationController
   end
 
   def start_run
-    repository = Repository.find(params[:id])
-    service = Run::Service.new(repository)
+    service = Run::Service.new(@repository)
     service.run!
 
-    redirect_to repository
+    redirect_to @repository
   end
 
   private
 
   def repository_params
-    params.require(:repository).permit(:github_repo_name)
+    params.require(:repository).permit(:name)
   end
 end

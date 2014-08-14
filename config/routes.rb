@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'welcome' => 'welcome#index', as: :welcome
   get "/auth/:provider/callback" => "sessions#create"
-  get "/signout" => "sessions#destroy", :as => :signout
+  get '/sessions/new'
+  get "/signout" => "sessions#destroy", as: :sign_out
 
   resources :repositories do
-    resources :runs, :only => :show do
+    resources :runs, only: :show do
       member do
         get :inspect
       end
@@ -15,10 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'welcome#index'
+  root 'repositories#index'
 
   if Rails.env.development?
     require 'sidekiq/web'
-    mount Sidekiq::Web => '/sidekiq'
+    mount(Sidekiq::Web => '/sidekiq')
   end
 end

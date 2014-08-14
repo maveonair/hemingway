@@ -5,6 +5,6 @@ module RunsHelper
   end
 
   def github_blame_url(run, file_path, line)
-    "https://github.com/#{run.github_repo_name}/blob/#{run.revision}/#{file_path}#L#{line}"
+    "https://github.com/#{run.name}/blob/#{run.revision}/#{file_path}#L#{line}"
   end
 end

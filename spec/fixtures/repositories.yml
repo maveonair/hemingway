@@ -1,6 +1,6 @@
 ---
 phrase:
-  github_repo_name: maveonair/phrase-droid
+  name: maveonair/phrase-droid
 kado:
-  github_repo_name: maveonair/kado
+  name: maveonair/kado
   locked: true

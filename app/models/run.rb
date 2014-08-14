@@ -5,7 +5,7 @@ class Run < ActiveRecord::Base
   validates :revision, presence: true
   validates :repository, presence: true
 
-  delegate :github_repo_name, to: :repository
+  delegate :name, to: :repository
 
   default_scope { order(sequence: :desc) }
 

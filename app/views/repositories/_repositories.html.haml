@@ -1,5 +1,5 @@
 %ul.list-unstyled
   - @repositories.each do |repository|
     %li
-      %h4= link_to repository.github_repo_name, repository
+      %h4= link_to repository.name, repository
       .small.updated_at= repository.updated_at

@@ -1,9 +1,11 @@
 class Repository < ActiveRecord::Base
+  belongs_to :user
   has_many :runs, dependent: :destroy
 
-  validates :github_repo_name, presence: true, uniqueness: true
+  validates :user, presence: true
+  validates :name, presence: true, uniqueness: true
 
-  default_scope { order(github_repo_name: :asc) }
+  default_scope { order(name: :asc) }
 
   def unlocked?
     !locked?
@@ -17,7 +19,7 @@ class Repository < ActiveRecord::Base
     update_attribute(:locked, false)
   end
 
-  def github_repository_url
-    "https://github.com/#{github_repo_name.downcase}"
+  def github_url
+    "https://github.com/#{name.downcase}"
   end
 end

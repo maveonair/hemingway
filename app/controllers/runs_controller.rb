@@ -1,26 +1,16 @@
 class RunsController < ApplicationController
-  before_filter :set_run
+  load_and_authorize_resource :repository
+  load_and_authorize_resource :run, through: :repository
 
-  def show
-    @run = @run.decorate
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json  { render :json => @run.parsed_result }
-    end
-  end
+  before_filter :decorate_run
 
   def inspect
-    @run = @run.decorate
-
     @inspection = @run.inspection(params[:file_path])
   end
 
   private
 
-  def set_run
-    repository = Repository.find(params[:repository_id])
-    @run = repository.runs.find(params[:id])    
+  def decorate_run
+    @run = @run.decorate
   end
-
 end
