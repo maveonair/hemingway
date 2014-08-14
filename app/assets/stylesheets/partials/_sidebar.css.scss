@@ -29,8 +29,13 @@
       }
     }
 
-    .avatar {
-      width: 50px;
+    .header-logo {
+      text-align: center;
+      margin-bottom: 10px;
+
+      .logo {
+        max-width: 55px;
+      }
     }
   }
 
@@ -48,10 +53,6 @@
 
     a:hover {
       color: #888;
-    }
-
-    .glyphicon {
-      margin-left: 10px;
     }
   }
 
