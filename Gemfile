@@ -33,10 +33,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 1.9'
 gem "omniauth-github", '1.1.2'
 gem 'octokit', '~> 3.0'
+gem 'attr_encrypted', '~> 1.3.2'
+gem 'sshkey'
 
-# Background processing
+# Background processing, git, code style
 gem 'sidekiq'
-
+gem 'rugged', '~> 0.21.0'
 gem 'rubocop'
 
 group :development do

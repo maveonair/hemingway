@@ -1,4 +1,4 @@
-class User::GithubService
+class Repository::Github::Service
   def initialize(user)
     @user = user
   end
@@ -8,7 +8,7 @@ class User::GithubService
   end
 
   def untested_repos
-    @untested_repos ||= repositories_names - tested_repos
+    @untested_repos ||= repositories_names - tested_repos.map(&:name)
   end
 
   def repositories
@@ -19,7 +19,7 @@ class User::GithubService
     repositories.map(&:full_name)
   end
 
-  private
+  protected
 
   def octokit
     @octokit ||= Octokit::Client.new(access_token: @user.token)

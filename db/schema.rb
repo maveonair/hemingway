@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814090756) do
+ActiveRecord::Schema.define(version: 20140815173156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "credentials", force: true do |t|
+    t.string   "encrypted_passphrase"
+    t.text     "encrypted_private_key"
+    t.text     "public_key"
+    t.integer  "repository_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credentials", ["repository_id"], name: "index_credentials_on_repository_id", using: :btree
 
   create_table "repositories", force: true do |t|
     t.string   "name"
@@ -22,6 +33,8 @@ ActiveRecord::Schema.define(version: 20140814090756) do
     t.datetime "updated_at"
     t.boolean  "locked",     default: false
     t.integer  "user_id"
+    t.string   "html_url"
+    t.string   "ssh_url"
   end
 
   add_index "repositories", ["user_id"], name: "index_repositories_on_user_id", using: :btree

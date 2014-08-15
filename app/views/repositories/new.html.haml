@@ -9,7 +9,7 @@
     .panel.panel-default
       .panel-body
         = link_to repository.name, repository
-        = link_to octicon('mark-github'), repository.github_url, target: :blank
+        = link_to octicon('mark-github'), repository.html_url, target: :blank
 
   %h3 Unfollowed
   - @service.untested_repos.each do |name|

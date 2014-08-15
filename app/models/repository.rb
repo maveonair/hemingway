@@ -1,5 +1,7 @@
 class Repository < ActiveRecord::Base
   belongs_to :user
+
+  has_one :credential, dependent: :destroy
   has_many :runs, dependent: :destroy
 
   validates :user, presence: true
@@ -17,9 +19,5 @@ class Repository < ActiveRecord::Base
 
   def unlock!
     update_attribute(:locked, false)
-  end
-
-  def github_url
-    "https://github.com/#{name.downcase}"
   end
 end

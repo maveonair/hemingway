@@ -11,17 +11,15 @@ class RepositoriesController < ApplicationController
   end
 
   def new
-    @service = User::GithubService.new(current_user)
+    @service = Repository::Github::Service.new(current_user)
   end
 
   def create
-    @repository =  Repository.new(repository_params)
-    @repository.user = current_user
-
-    if @repository.save
-      redirect_to @repository
+    @service = Repository::Github::DeploymentService.new(current_user, repository_params)
+    if @service.save
+      redirect_to @service.repository
     else
-      @service = User::GithubService.new(current_user)
+      flash[:alert] = 'Some errors occured, please try again.'
       render 'new'
     end
   end

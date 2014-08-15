@@ -16,15 +16,15 @@ class Run::Worker
   end
 
   def run!
-    git_stats = git_wrapper.checkout(@repository.github_url)
-    rubocop_stats = rubocop_wrapper.analyze_code
+    last_commit = git_wrapper.clone
+    rubocop_statistic = rubocop_wrapper.analyze_code
 
     @repository.runs.build.tap do |run|
-      run.author = git_stats.author
-      run.revision = git_stats.revision
-      run.log = git_stats.log
-      run.passed = rubocop_stats.passed
-      run.result = rubocop_stats.result
+      run.author = last_commit.author
+      run.revision = last_commit.revision
+      run.log = last_commit.log
+      run.passed = rubocop_statistic.passed
+      run.result = rubocop_statistic.result
       run.save!
     end
   end
@@ -32,7 +32,7 @@ class Run::Worker
   private
 
   def git_wrapper
-    GitWrapper.new(@working_directory)
+    GitWrapper.new(@repository, @working_directory)
   end
 
   def rubocop_wrapper
