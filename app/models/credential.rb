@@ -28,7 +28,7 @@ class Credential < ActiveRecord::Base
   end
 
   def generate_ssh_keys
-    key = SSHKey.generate(passphrase: self.passphrase)
+    key = SSHKey.generate(passphrase: passphrase)
     self.private_key = key.private_key
     self.public_key = key.ssh_public_key
   end

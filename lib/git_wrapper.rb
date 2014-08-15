@@ -5,14 +5,12 @@ class GitWrapper
   end
 
   def clone
-    begin
-      repository = Rugged::Repository.clone_at(@repository.ssh_url,
-                                               @working_directory,
-                                               { credentials: ssh_key })
-      last_commit(repository)
-    ensure
-      cleanup
-    end
+    repository = Rugged::Repository.clone_at(@repository.ssh_url,
+                                             @working_directory,
+                                             credentials: ssh_key)
+    last_commit(repository)
+  ensure
+    cleanup
   end
 
   private
@@ -30,7 +28,6 @@ class GitWrapper
                                     publickey: public_key_file.path,
                                     privatekey: private_key_file.path,
                                     passphrase: credentials.passphrase)
-
   end
 
   def private_key_file

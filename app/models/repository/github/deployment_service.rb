@@ -5,14 +5,12 @@ class Repository::Github::DeploymentService < Repository::Github::Service
   end
 
   def save
-    begin
-      enrich_repository
-      add_deploy_key
-      repository.save
-    rescue => exception
-      Rails.logger.error(exception)
-      false
-    end
+    enrich_repository
+    add_deploy_key
+    repository.save
+  rescue => exception
+    Rails.logger.error(exception)
+    false
   end
 
   def repository
