@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815173156) do
+ActiveRecord::Schema.define(version: 20140816173722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140815173156) do
     t.integer  "repository_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "external_key_id"
   end
 
   add_index "credentials", ["repository_id"], name: "index_credentials_on_repository_id", using: :btree

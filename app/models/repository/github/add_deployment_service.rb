@@ -1,4 +1,4 @@
-class Repository::Github::DeploymentService < Repository::Github::Service
+class Repository::Github::AddDeploymentService < Repository::Github::Service
   def initialize(user, params)
     super(user)
     @params = params
@@ -6,7 +6,7 @@ class Repository::Github::DeploymentService < Repository::Github::Service
 
   def save
     enrich_repository
-    add_deploy_key
+    add_deploy_key!
     repository.save
   rescue => exception
     Rails.logger.error(exception)
@@ -30,8 +30,10 @@ class Repository::Github::DeploymentService < Repository::Github::Service
     @repository_details ||= octokit.repo(repository.name)
   end
 
-  def add_deploy_key
-    octokit.add_deploy_key(repository.name, 'hemingway-deploy-key', credentials.public_key)
+  def add_deploy_key!
+    key = octokit.add_deploy_key(repository.name, 'hemingway-deploy-key', credentials.public_key)
+    credentials.external_key_id = key.id
+    credentials.save!
   end
 
   def credentials

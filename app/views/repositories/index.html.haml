@@ -4,8 +4,8 @@
     %li.active Repositories
 
     .actions.pull-right
-      = link_to [:new, :repository] ,class: 'btn btn-default btn-xs' do
-        = octicon('plus')
-        Add repository
+      = link_to [:settings, :repositories] ,class: 'btn btn-default btn-xs' do
+        = octicon('settings')
+        Settings
 
   = render 'repositories'

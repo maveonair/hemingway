@@ -4,11 +4,15 @@ Rails.application.routes.draw do
   get '/sessions/new'
   get "/signout" => "sessions#destroy", as: :sign_out
 
-  resources :repositories do
+  resources :repositories, except: :new do
     resources :runs, only: :show do
       member do
         get :inspect
       end
+    end
+
+    collection do
+      get :settings
     end
 
     member do

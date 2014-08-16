@@ -3,7 +3,13 @@
   background-color: #2A363B;
   color: #fff;
 
+  text-align: center;
+
+  .logo img{
+    max-width: 200px;
+  }
+
   .sign-in {
-    text-align: center;
+    margin-top: 25px;
   }
 }

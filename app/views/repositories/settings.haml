@@ -9,9 +9,11 @@
     .panel.panel-default
       .panel-body
         = link_to repository.name, repository
-        = link_to octicon('mark-github'), repository.html_url, target: :blank
+        .pull-right
+          = link_to octicon('mark-github'), repository.html_url, target: :blank
+          = link_to octicon('trashcan'), repository, method: :delete, data: { confirm: 'Are you sure?' }
 
-  %h3 Unfollowed
+  %h3 Not checked
   - @service.untested_repos.each do |name|
     .panel.panel-default
       .panel-body
