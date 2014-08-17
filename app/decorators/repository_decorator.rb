@@ -13,7 +13,6 @@ class RepositoryDecorator < Draper::Decorator
     @chart_bar ||= Run::ChartBar.new(last_run)
   end
 
-
   def last_run_at
     "Last run #{h.time_ago_in_words(model.created_at)} ago"
   end
@@ -21,6 +20,6 @@ class RepositoryDecorator < Draper::Decorator
   private
 
   def last_run
-    @last_run ||= model.runs.order("created_at").last
+    @last_run ||= model.runs.order('created_at').last
   end
 end
