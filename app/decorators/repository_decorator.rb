@@ -9,12 +9,20 @@ class RepositoryDecorator < Draper::Decorator
     last_run.present? ? last_run.summary.offenses? : false
   end
 
+  def passed?
+    last_run.present? ? last_run.passed? : false
+  end
+
   def chart_bar
     @chart_bar ||= Run::ChartBar.new(last_run)
   end
 
   def last_run_at
-    "Last run #{h.time_ago_in_words(model.created_at)} ago"
+    if last_run.present?
+      "Last run #{h.time_ago_in_words(last_run.created_at)} ago"
+    else
+      'No inspections'
+    end
   end
 
   private
