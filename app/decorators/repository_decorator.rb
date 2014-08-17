@@ -5,8 +5,8 @@ class RepositoryDecorator < Draper::Decorator
     RunDecorator.decorate_collection(model.runs)
   end
 
-  def errors?
-    last_run.present? ? last_run.statistic.errors? : false
+  def offenses?
+    last_run.present? ? last_run.summary.offenses? : false
   end
 
   def chart_bar
@@ -20,6 +20,6 @@ class RepositoryDecorator < Draper::Decorator
   private
 
   def last_run
-    @last_run ||= model.runs.order('created_at').last
+    @last_run ||= model.runs.order(created_at: :desc).first
   end
 end

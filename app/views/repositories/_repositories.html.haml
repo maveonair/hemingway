@@ -2,7 +2,7 @@
   - @repositories.each do |repository|
     %li
       %h4= link_to repository.name, repository
-      - if repository.errors?
+      - if repository.offenses?
         - chart_bar = repository.chart_bar
         .mini-chart-bar
           .chart-bar{style: "width: #{chart_bar.conventions}%; background-color: #FECEA8;"}
@@ -13,4 +13,4 @@
         .mini-chart-bar
           .chart-bar{style: "width: 100%; background-color: #99B898;"}
 
-      .small.last_run_at= repository.last_run_at    
+      .small.last_run_at= repository.last_run_at

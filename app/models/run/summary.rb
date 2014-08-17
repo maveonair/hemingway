@@ -3,6 +3,10 @@ class Run::Summary
     @summary = result[:summary]
   end
 
+  def offenses?
+    total_offenses > 0
+  end
+
   def total_offenses
     @summary[:offense_count]
   end
