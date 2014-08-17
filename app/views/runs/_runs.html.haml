@@ -1,0 +1,27 @@
+.runs
+  %table.table
+    %thead
+      %tr
+        %th Run
+        %th Revision
+        %th Author
+        %th Log
+        %th.text-right Conventions
+        %th.text-right Warnings
+        %th.text-right Errors
+        %th.text-right Fatals
+        %th.text-center Status
+        %th
+    %tbody
+      - runs.each do |run|
+        %tr
+          %td= run.sequence
+          %td= run.revision
+          %td= run.author
+          %td= run.log
+          %td.conventions= run.statistic.total_conventions
+          %td.warnings= run.statistic.total_warnings
+          %td.errors= run.statistic.total_errors
+          %td.fatals= run.statistic.total_fatals
+          %td.status= run.status
+          %td.actions= link_to 'Details', [@repository, run], :class => 'btn btn-default btn-xs'

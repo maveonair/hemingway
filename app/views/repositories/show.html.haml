@@ -1,6 +1,7 @@
 .repository
   %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :repositories
+    %li= link_to octicon('home'), :root
+    %li= link_to 'Repositories', :repositories
     %li.active= @repository.name
 
     .actions.pull-right
@@ -8,29 +9,11 @@
         = octicon('microscope')
         Inspect
 
-  %table.table
-    %thead
-      %tr
-        %th Run
-        %th Revision
-        %th Author
-        %th Log
-        %th.text-right Conventions
-        %th.text-right Warnings
-        %th.text-right Errors
-        %th.text-right Fatals
-        %th Status
-        %th
-    %tbody
-      - @repository.runs.each do |run|
-        %tr
-          %td= run.sequence
-          %td= run.revision
-          %td= run.author
-          %td= run.log
-          %td.conventions= run.statistic.total_conventions
-          %td.warnings= run.statistic.total_warnings
-          %td.errors= run.statistic.total_errors
-          %td.fatals= run.statistic.total_fatals
-          %td.passed= run.status
-          %td.actions= link_to 'Details', [@repository, run], :class => 'btn btn-default btn-xs'
+  - if @repository.runs.any?
+    = render 'runs/runs', runs: @repository.runs
+  - else
+    .alert.alert-info{ role: 'alert' }
+      %strong Hi again!
+      You should probably
+      = link_to 'start', [:start_run, @repository], method: :post, class: 'alert-link'
+      a new inspection for this repository.

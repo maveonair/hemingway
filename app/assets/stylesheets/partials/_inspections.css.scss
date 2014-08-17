@@ -1,10 +1,12 @@
-.inspections table {
-  td:first-child {
-    width: 75%;
-    text-align: left;
-  }
+.inspections {
+  table {
+    td:first-child {
+      width: 75%;
+      text-align: left;
+    }
 
-  td {
-    text-align: right;
+    td {
+      text-align: right;
+    }
   }
 }

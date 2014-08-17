@@ -8,9 +8,6 @@
       width: 45px;
     }
 
-    td {
-      text-align: right;
-    }
 
     td:first-child {
       text-align: center;
@@ -22,6 +19,10 @@
 
     td.statistic {
       width: 100px;
+    }
+
+    td.status {
+      text-align: center;
     }
 
     td.actions {

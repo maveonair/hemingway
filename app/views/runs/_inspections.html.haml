@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th File path
+      %th Conventions
+      %th Warnings
+      %th Errors
+      %th Fatals
+  %tbody
+    - @run.inspections.each do |inspection|
+      %tr
+        %td= link_to inspection.file_path, polymorphic_path([:inspect, @run.repository, @run], :file_path => inspection.file_path)
+        %td.conventions= inspection.total_conventions
+        %td.warnings= inspection.total_warnings
+        %td.erros= inspection.total_errors
+        %td.fatals= inspection.total_fatals

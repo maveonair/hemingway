@@ -12,7 +12,11 @@ class Repository::Github::Service
   end
 
   def repositories
-    @repositories ||= octokit.repos.select { |repo| repo.language == 'Ruby' }
+    @repositories ||= owned_repositories.select { |repo| repo.language == 'Ruby' }
+  end
+
+  def owned_repositories
+    @owned_repositories ||= octokit.repos.select { |r| r.permissions.admin? }
   end
 
   def repositories_names

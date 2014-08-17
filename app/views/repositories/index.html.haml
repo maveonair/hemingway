@@ -4,8 +4,15 @@
     %li.active Repositories
 
     .actions.pull-right
-      = link_to [:settings, :repositories] ,class: 'btn btn-default btn-xs' do
+      = link_to [:settings, :repositories], class: 'btn btn-default btn-xs' do
         = octicon('settings')
         Settings
 
-  = render 'repositories'
+  - if @repositories.any?
+    = render 'repositories'
+  - else
+    .alert.alert-info{ role: 'alert' }
+      %strong Hi!
+      You should probably
+      = link_to 'add', [:settings, :repositories], class: 'alert-link'
+      a new repository that should be inspected.

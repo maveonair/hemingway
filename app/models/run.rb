@@ -28,7 +28,7 @@ class Run < ActiveRecord::Base
   end
 
   def statistic
-    Run::Statistic.new(self)
+    @statistic ||= Run::Statistic.new(self)
   end
 
   private

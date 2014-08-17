@@ -19,7 +19,7 @@ class RunDecorator < Draper::Decorator
   private
 
   def success_label
-    label('Success', 'success')
+    label('Succeeded', 'success')
   end
 
   def failed_label

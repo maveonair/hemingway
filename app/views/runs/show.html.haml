@@ -1,22 +1,13 @@
 .inspections
   %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :repositories
+    %li= link_to octicon('home'), :root
+    %li= link_to 'Repositories', :repositories
     %li= link_to @run.name, @run.repository
     %li.active= @run.sequence
 
-  %table.table
-    %thead
-      %tr
-        %th File path
-        %th Conventions
-        %th Warnings
-        %th Errors
-        %th Fatals
-    %tbody
-      - @run.inspections.each do |inspection|
-        %tr
-          %td= link_to inspection.file_path, polymorphic_path([:inspect, @run.repository, @run], :file_path => inspection.file_path)
-          %td.conventions= inspection.total_conventions
-          %td.warnings= inspection.total_warnings
-          %td.erros= inspection.total_errors
-          %td.fatals= inspection.total_fatals
+  - if @run.inspections.any?
+    = render 'inspections'
+  - else
+    .alert.alert-info{ role: 'alert' }
+      %strong Hooray!
+      Everything is fine!

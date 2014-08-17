@@ -2,7 +2,7 @@ class Run::Statistic
   def initialize(run)
     @run = run
   end
-
+  
   def total_conventions
     total_severity(:convention)
   end
