@@ -1,10 +1,11 @@
 class Repository::Github::Service
-  def initialize(user)
+  def initialize(user, organization_id = nil)
     @user = user
+    @organization_id = organization_id.try(:to_i)
   end
 
   def tested_repos
-    @tested_repos ||= @user.repositories
+    @tested_repos ||= user.repositories
   end
 
   def untested_repos
@@ -12,20 +13,41 @@ class Repository::Github::Service
   end
 
   def repositories
-    @repositories ||= owned_repositories.select { |repo| repo.language == 'Ruby' }
+    @repositories ||= owned_repositories
   end
 
   def owned_repositories
-    @owned_repositories ||= octokit.repos.select { |r| r.permissions.admin? }
+    @owned_repositories ||= organization_id.present? ? owned_organisation_repositories : owned_personal_repositories
   end
 
   def repositories_names
     repositories.map(&:full_name)
   end
 
+  def organizations
+    @organizations ||= octokit.organizations.map do |organization|
+      OpenStruct.new(id: organization.id,
+                     name: organization.login,
+                     avatar_url: organization.avatar_url)
+    end
+  end
+
   protected
 
+  attr_reader :user, :organization_id
+
+  def owned_personal_repositories
+    octokit.repos.select { |r| r.permissions.admin? }
+  end
+
+  def owned_organisation_repositories
+    # We are able only to get 200 repositories back with this code.
+    # Probably we should implement a proper pagiation
+    repositories = octokit.org_repos(organization_id, per_page: 100).select { |r| r.permissions.admin? }
+    repositories.concat(octokit.last_response.rels[:next].get.data)
+  end
+
   def octokit
-    @octokit ||= Octokit::Client.new(access_token: @user.token)
+    @octokit ||= Octokit::Client.new(access_token: user.token)
   end
 end

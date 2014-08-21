@@ -17,8 +17,7 @@
 
         = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav navbar-right' do |n|
           - n.group 'placeholder' do
-            - n.item 'User Profile', '/'
-            - n.item octicon('sign-out'), [:settings, :repositories]
+            - n.item "#{octicon('sign-out')} Sign out".html_safe, [:settings, :repositories]
 
     %nav.navbar.navbar-default.navbar-fixed-top.sub-navigation{role: 'navigation'}
       .container-fluid.is-navigation
