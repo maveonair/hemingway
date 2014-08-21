@@ -1,9 +1,8 @@
-.repository
-  %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :repositories
-    %li= link_to 'Repositories', :repositories
-    %li Settings
+= content_for(:sub_navigation) do
+  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
+    - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back'}
 
+.repository
   %h3 Followed
   - @service.tested_repos.each do |repository|
     .panel.panel-default

@@ -1,14 +1,9 @@
+= content_for(:sub_navigation) do
+  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
+    - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
+    - n.item octicon('microscope'), [:start_run, @repository], data: { toggle: 'tooltip', placement: 'bottom', title: 'Start inspection' }
+
 .repository
-  %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :root
-    %li= link_to 'Repositories', :repositories
-    %li.active= @repository.name
-
-    .actions.pull-right
-      = link_to [:start_run, @repository], method: :post, class: 'btn btn-default btn-xs' do
-        = octicon('microscope')
-        Inspect
-
   - if @repository.runs.any?
     = render 'runs/runs', runs: @repository.runs
   - else

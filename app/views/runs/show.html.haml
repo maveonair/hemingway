@@ -1,10 +1,8 @@
-.inspections
-  %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :root
-    %li= link_to 'Repositories', :repositories
-    %li= link_to @run.name, @run.repository
-    %li.active= @run.sequence
+= content_for(:sub_navigation) do
+  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
+    - n.item octicon('arrow-left'), @run.repository, data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
 
+.inspections
   - if @run.inspections.any?
     = render 'inspections'
   - else

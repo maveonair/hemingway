@@ -13,6 +13,10 @@ class RepositoryDecorator < Draper::Decorator
     last_run.present? ? last_run.passed? : false
   end
 
+  def severity
+    last_run.present? ? last_run.decorate.status : false
+  end
+
   def chart_bar
     @chart_bar ||= Run::ChartBar.new(last_run)
   end

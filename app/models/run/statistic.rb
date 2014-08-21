@@ -20,7 +20,7 @@ class Run::Statistic
   end
 
   def errors?
-    (total_warnings + total_errors + total_fatals) > 0
+    (total_errors + total_fatals) > 0
   end
 
   def measurements

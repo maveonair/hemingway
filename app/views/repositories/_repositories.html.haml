@@ -1,15 +1,24 @@
-%ul.list-unstyled
-  - @repositories.each do |repository|
-    %li
-      %h4= link_to repository.name, repository
-      .mini-chart-bar
-        - if repository.offenses?
-          - chart_bar = repository.chart_bar
-          .chart-bar{style: "width: #{chart_bar.conventions}%; background-color: #FECEA8;"}
-          .chart-bar{style: "width: #{chart_bar.warnings}%; background-color: #FF847C;"}
-          .chart-bar{style: "width: #{chart_bar.errors}%; background-color: #E84A5F;"}
-          .chart-bar{style: "width: #{chart_bar.fatals}%; background-color: #F7464A;"}
-        - elsif repository.passed?
-          .chart-bar{style: "width: 100%; background-color: #99B898;"}
-
-      .small.last_run_at= repository.last_run_at
+%table.table.repositories
+  %thead
+    %tr
+      %th.name Repository
+      %th.offenses Offenses
+      %th.severity Severity
+  %tbody
+    - @repositories.each do |repository|
+      %tr
+        %td.name
+          = link_to repository.name, repository
+          .small.repository--last-run-at= repository.last_run_at
+        %td.offenses
+          .repository.is-mini-chart-bar
+            - if repository.offenses?
+              - chart_bar = repository.chart_bar
+              .repository--chart-bar{style: "width: #{chart_bar.conventions}%; background-color: #FECEA8;"}
+              .repository--chart-bar{style: "width: #{chart_bar.warnings}%; background-color: #FF847C;"}
+              .repository--chart-bar{style: "width: #{chart_bar.errors}%; background-color: #E84A5F;"}
+              .repository--chart-bar{style: "width: #{chart_bar.fatals}%; background-color: #F7464A;"}
+            - elsif repository.passed?
+              .repository--chart-bar{style: "width: 100%; background-color: #99B898;"}
+        %td.severity
+          = repository.severity
