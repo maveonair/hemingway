@@ -44,7 +44,12 @@ class Repository::Github::Service
     # We are able only to get 200 repositories back with this code.
     # Probably we should implement a proper pagiation
     repositories = octokit.org_repos(organization_id, per_page: 100).select { |r| r.permissions.admin? }
-    repositories.concat(octokit.last_response.rels[:next].get.data)
+
+    if repositories.any? && octokit.last_response.rels[:next].present?
+      repositories.concat(octokit.last_response.rels[:next].get.data)
+    end
+
+    repositories
   end
 
   def octokit
