@@ -1,13 +1,8 @@
+= content_for(:sub_navigation) do
+  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav navbar-right' do |n|
+    - n.item octicon('three-bars'), [:settings, :repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Settings' } 
+
 .repositories
-  %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :root
-    %li.active Repositories
-
-    .actions.pull-right
-      = link_to [:settings, :repositories], class: 'btn btn-default btn-xs' do
-        = octicon('settings')
-        Settings
-
   - if @repositories.any?
     = render 'repositories'
   - else

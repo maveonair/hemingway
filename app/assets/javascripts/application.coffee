@@ -16,3 +16,8 @@
 #= require bootstrap-sprockets
 #= require Chart
 #= require_tree .
+
+$(document).on 'ready page:load', ->
+  $('.navbar-nav li').tooltip
+    delay:
+      show: 500

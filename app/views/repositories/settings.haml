@@ -1,23 +1,36 @@
-.repository
-  %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :repositories
-    %li= link_to 'Repositories', :repositories
-    %li Settings
+= content_for(:sub_navigation) do
+  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
+    - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back'}
 
-  %h3 Followed
-  - @service.tested_repos.each do |repository|
-    .panel.panel-default
-      .panel-body
-        = link_to repository.name, repository
-        .pull-right
-          = link_to octicon('mark-github'), repository.html_url, target: :blank
-          = link_to octicon('trashcan'), repository, method: :delete, data: { confirm: 'Are you sure?' }
+.row
+  .col-md-2
+    %ul.nav.nav-pills.nav-stacked
+      %li
+        = link_to [:settings, :repositories] do
+          = image_tag(current_user.avatar_url, class: 'logo')
+          = current_user.username
+      - @service.organizations.each do |organization|
+        %li
+          = link_to polymorphic_path([:settings, :repositories], organization_id: organization.id) do
+            = image_tag(organization.avatar_url, class: 'logo')
+            =  organization.name
 
-  %h3 Not checked
-  - @service.untested_repos.each do |name|
-    .panel.panel-default
-      .panel-body
-        = name
+  .col-md-10
+    .repository
+      %h3 Followed
+      - @service.tested_repos.each do |repository|
+        .panel.panel-default
+          .panel-body
+            = link_to repository.name, repository
+            .pull-right
+              = link_to octicon('mark-github'), repository.html_url, target: :blank
+              = link_to octicon('trashcan'), repository, method: :delete, data: { confirm: 'Are you sure?' }
 
-        .pull-right
-          = link_to octicon('plus'), polymorphic_path(:repositories, repository: { name: name }), method: :post
+      %h3 Not checked
+      - @service.untested_repos.each do |name|
+        .panel.panel-default
+          .panel-body
+            = name
+
+            .pull-right
+              = link_to octicon('plus'), polymorphic_path(:repositories, repository: { name: name }), method: :post

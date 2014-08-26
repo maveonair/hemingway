@@ -1,11 +1,8 @@
-.inspection
-  %ol.breadcrumb.breadcrumb-navigation
-    %li= link_to octicon('home'), :root
-    %li= link_to 'Repositories', :repositories
-    %li= link_to @run.name, @run.repository
-    %li= link_to @run.sequence, [@run.repository, @run]
-    %li.active= @inspection.file_path
+= content_for(:sub_navigation) do
+  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
+    - n.item octicon('arrow-left'), [@run.repository, @run], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
 
+.inspection
   %table.table.table-inspect
     %thead
       %tr

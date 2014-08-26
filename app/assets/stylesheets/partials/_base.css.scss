@@ -1,3 +1,7 @@
+body {
+   padding-top: 100px;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -8,4 +12,8 @@ a:hover {
 
 .flash {
   margin-top: 10px;
+}
+
+.logo {
+  max-height: 15px;
 }

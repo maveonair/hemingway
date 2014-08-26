@@ -1,38 +1,31 @@
-.repositories {
-  ul {
-    li {
-      &:first-child {
-        padding-top: 0;
-      }
+.repository.is-mini-chart-bar {
+  height: 5px;
+  width: 100%;
+  display: inline-block;
+  background: #e0e0e0;
+}
 
-      &:last-child {
-        border: 0;
-      }
+.repository.is-mini-chart-bar .repository--chart-bar {
+  float: left;
+  height: 100%;
+}
 
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eeeeee;
-    }
+.repository--last-run-at {
+  color: #777;
+}
 
-    h4 {
-      margin-bottom: 0;
-    }
-
-    .last_run_at {
-      color: #999;
-    }
+table.repositories {
+  th.name, td.name {
+    width: 70%;
   }
 
-  .mini-chart-bar {
-    height: 5px;
-    width: 100%;
-    display: inline-block;
-    background: #e0e0e0;
+  th.offenses, td.offenses {
+    width: 20%;
+  }
 
-    .chart-bar {
-      float: left;
-      height: 100%;
-    }
+  th.severity, td.severity {
+    text-align: center;
+    width: 10%;
   }
 }
 
