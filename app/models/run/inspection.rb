@@ -13,6 +13,10 @@ class Run::Inspection
     end
   end
 
+  def offense(line_number)
+    offenses.detect { |offense| offense.location[:line] == line_number }
+  end
+
   def total_conventions
     total_severity(:convention)
   end

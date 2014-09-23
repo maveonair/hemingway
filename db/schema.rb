@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20140816173722) do
     t.text     "log"
   end
 
+  add_index "runs", ["repository_id"], name: "index_runs_on_repository_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "provider"
     t.string   "uid"

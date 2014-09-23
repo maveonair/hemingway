@@ -14,12 +14,14 @@ class Repository::Github::AddDeploymentService < Repository::Github::Service
   end
 
   def repository
-    @repository ||= @user.repositories.build(@params).tap do |model|
+    @repository ||= @user.repositories.build(params).tap do |model|
       model.credential = Credential.build_with_keys
     end
   end
 
   private
+
+  attr_reader :params
 
   def enrich_repository
     repository.html_url = repository_details.html_url

@@ -16,10 +16,6 @@ class Repository::Github::Service
     @repositories ||= owned_repositories
   end
 
-  def owned_repositories
-    @owned_repositories ||= organization_id.present? ? owned_organisation_repositories : owned_personal_repositories
-  end
-
   def repositories_names
     repositories.map(&:full_name)
   end
@@ -35,6 +31,10 @@ class Repository::Github::Service
   protected
 
   attr_reader :user, :organization_id
+
+  def owned_repositories
+    organization_id.present? ? owned_organisation_repositories : owned_personal_repositories
+  end
 
   def owned_personal_repositories
     octokit.repos.select { |r| r.permissions.admin? }

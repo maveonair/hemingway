@@ -4,7 +4,7 @@ class CreateRuns < ActiveRecord::Migration
       t.integer :sequence
       t.boolean :passed
       t.text :result
-      t.references :repository
+      t.references :repository, index: true
 
       t.timestamps
     end

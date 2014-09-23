@@ -1,19 +1,10 @@
 = content_for(:sub_navigation) do
   = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
     - n.item octicon('arrow-left'), [@run.repository, @run], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
+    - n.item octicon('code'), [@run.repository, @run]
 
 .inspection
-  %table.table.table-inspect
-    %thead
-      %tr
-        %th Line
-        %th.text-center Severity
-        %th Message
-        %th
-    %tbody
-      - @inspection.offenses.each do |offense|
-        %tr
-          %th= offense.line_number
-          %td.text-center= severity_label(offense.severity)
-          %td= offense.message
-          %td.text-right= link_to "#{octicon('link')} GitHub".html_safe, github_blame_url(@run, @inspection.file_path, offense.line_number), :target => :blank, :class => 'btn btn-default btn-xs'
+  .panel.panel-default
+    .panel-heading= @inspection.file_path
+    .panel-body
+      = render_code(@content, @inspection)

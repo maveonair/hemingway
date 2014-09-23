@@ -1,8 +1,8 @@
 = content_for(:sub_navigation) do
   = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
     - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
-    
-    %li{data: { toggle: 'tooltip', placement: 'bottom', title: 'Start inspection' }}
+
+    %li{data: { toggle: 'tooltip', placement: 'bottom', title: 'Run inspection' }}
       = link_to octicon('microscope'), [:start_run, @repository], method: :post
 
 .repository
