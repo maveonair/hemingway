@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
   has_many :repositories, dependent: :destroy
 
-  validates_presence_of :username, :token, :provider, :uid
+  validates :username, :token, :provider, :uid, presence: true
 end

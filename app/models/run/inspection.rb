@@ -18,7 +18,7 @@ class Run::Inspection
   end
 
   def offense(line_number)
-    offenses.detect { |offense| offense.location[:line] == line_number }
+    offenses.find { |offense| offense.location[:line] == line_number }
   end
 
   def total_conventions

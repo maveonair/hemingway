@@ -27,7 +27,7 @@ class Run < ActiveRecord::Base
   end
 
   def inspection(file_path)
-    inspections.detect { |inspection| inspection.file_path == file_path }
+    inspections.find { |inspection| inspection.file_path == file_path }
   end
 
   def parsed_result
