@@ -10,7 +10,7 @@ module InspectionHelper
       if offense.present?
         message = content_tag(:span, "#{offense.message}", class: "label-severity-#{offense.severity}")
         enriched_line = content_tag(:span, line.html_safe, class: "code-severity-#{offense.severity}")
-        "#{message}\n#{enriched_line}\n"
+        "#{message}\n#{enriched_line}"
       else
         line
       end
