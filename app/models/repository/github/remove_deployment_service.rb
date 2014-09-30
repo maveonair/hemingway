@@ -1,4 +1,4 @@
-class Repository::Github::RemoveDeploymentService < Repository::Github::Service
+class Repository::Github::RemoveDeploymentService < Repository::Github::RepositoryService
   def initialize(user, repository)
     super(user)
     @repository = repository

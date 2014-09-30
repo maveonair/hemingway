@@ -1,6 +1,4 @@
-= content_for(:sub_navigation) do
-  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
-    - n.item octicon('arrow-left'), @run.repository, data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
+= render 'repositories/repository_navigation'
 
 .inspections
   - if @run.inspections.any?

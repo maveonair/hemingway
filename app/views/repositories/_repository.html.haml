@@ -1,0 +1,8 @@
+%ul.list-unstyled
+  - @repository.runs.each do |run|
+    %li
+      %strong= "Summary of #{run.revision} (#{run.created_at})"
+      .text-muted
+        = "#{run.summary.total_offenses} offenses"
+        = "in #{run.summary.total_inspected_files} inspected files"
+        = "of #{run.summary.total_files}"

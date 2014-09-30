@@ -1,3 +1,4 @@
+
 !!!
 %html
   %head
@@ -7,22 +8,23 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
-      .container-fluid.is-navigation
-        .navbar-header
-          = image_tag('logo.png', class: 'navigation--logo')
+    .container.container--main
+      %nav.navbar.navbar-inverse.navigation--main.navbar-static-top{role: 'navigation'}
+        .container-fluid.is-navigation
+          .navbar-header
+            = image_tag('logo.png', class: 'navigation--logo')
 
-        = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
-          - n.item 'Repositories', :repositories
+          = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
+            - n.item 'Repositories', :repositories
 
-        = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav navbar-right' do |n|
-          - n.group 'placeholder' do
-            - n.item "#{octicon('sign-out')} Sign out".html_safe, [:settings, :repositories]
+          = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav navbar-right' do |n|
+            - n.group 'placeholder' do
+              - n.item "#{octicon('sign-out')} Sign out".html_safe, [:settings, :repositories]
 
-    %nav.navbar.navbar-default.navbar-fixed-top.sub-navigation{role: 'navigation'}
-      .container-fluid.is-navigation
-        = yield :sub_navigation
+      %nav.navbar.navbar-default.navbar-static-top.sub-navigation{role: 'navigation'}
+        .container-fluid.is-navigation
+          = yield :sub_navigation
 
-    .container-fluid
-      = render 'shared/flash'
-      = yield
+      .container-fluid
+        = render 'shared/flash'
+        = yield
