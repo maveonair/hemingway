@@ -1,25 +1,42 @@
 module InspectionHelper
   def render_code(code, inspection)
-    html = Pygments.highlight(code, lexer: :ruby)
-
-    index = 1
-    enriched_html = html.lines.map do |line|
-      offense = inspection.offense(index)
-      index = index + 1
-
-      if offense.present?
-        message = content_tag(:span, "#{offense.message}", class: "label-severity-#{offense.severity}")
-        enriched_line = content_tag(:span, line.html_safe, class: "code-severity-#{offense.severity}")
-        "#{message}\n#{enriched_line}"
-      else
-        line
-      end
-    end.join('')
-
-    find_and_preserve(enriched_html)
+    find_and_preserve(enriched_html(code, inspection))
   end
 
-  def severity_label(severity)
-    content_tag :span, severity, class: "label label-severity-#{severity}"
+  private
+
+  def enriched_html(code, inspection)
+    html = highlighted_html(code)
+
+    index = 0
+    html.lines.map do |line|
+      index += 1
+      enrich_code_line(inspection, line, index)
+    end.join('')
+  end
+
+  def highlighted_html(code)
+    Pygments.highlight(code, lexer: :ruby)
+  end
+
+  def enrich_code_line(inspection, line, index)
+    offense = inspection.offense(index)
+
+    if offense.present?
+      message = message_content_tag(offense.message, offense.severity)
+      enriched_line = code_line_tag(line, offense.severity)
+
+      "#{message}\n#{enriched_line}"
+    else
+      line
+    end
+  end
+
+  def message_content_tag(text, severity)
+    content_tag(:span, text, class: "label-severity-#{severity}")
+  end
+
+  def code_line_tag(line, severity)
+    content_tag(:span, line.html_safe, class: "code-severity-#{severity}")
   end
 end
