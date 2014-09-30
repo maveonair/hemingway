@@ -10,7 +10,8 @@ class Run < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
 
   def self.latest_run
-    order(:created_at).last
+    # See default_scope
+    first
   end
 
   def self.exist?(revision)
