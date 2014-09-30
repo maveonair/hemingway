@@ -12,7 +12,7 @@
       %nav.navbar.navbar-inverse.navigation--main.navbar-static-top{role: 'navigation'}
         .container-fluid.is-navigation
           .navbar-header
-            = image_tag('logo.png', class: 'navigation--logo')
+            = link_to image_tag('logo.png', class: 'navigation--logo'), [:repositories]
 
           = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
             - n.item 'Repositories', :repositories
