@@ -7,7 +7,7 @@ class Run < ActiveRecord::Base
 
   delegate :name, to: :repository
 
-  default_scope { order(:created_at) }
+  default_scope { order(created_at: :desc) }
 
   def self.latest_run
     order(:created_at).last
