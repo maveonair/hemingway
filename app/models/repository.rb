@@ -9,9 +9,7 @@ class Repository < ActiveRecord::Base
 
   default_scope { order(name: :asc) }
 
-  def latest_run
-    runs.latest_run
-  end
+  delegate :latest_run, to: :runs
 
   def unlocked?
     !locked?
