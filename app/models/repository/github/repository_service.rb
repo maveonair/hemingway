@@ -33,22 +33,30 @@ class Repository::Github::RepositoryService < Repository::Github::Service
   attr_reader :organization_id
 
   def owned_repositories
-    organization_id.present? ? owned_organisation_repositories : owned_personal_repositories
+    organization_id.present? ? all_owned_organisation_repositories : owned_personal_repositories
   end
 
   def owned_personal_repositories
     octokit.repos.select { |r| r.permissions.admin? }
   end
 
-  def owned_organisation_repositories
+  def all_owned_organisation_repositories
     # We are able only to get 200 repositories back with this code.
     # Probably we should implement a proper pagiation
-    repositories = octokit.org_repos(organization_id, per_page: 100).select { |r| r.permissions.admin? }
+    repositories = owned_organization_repositories
 
     if repositories.any? && octokit.last_response.rels[:next].present?
       repositories.concat(octokit.last_response.rels[:next].get.data)
     end
 
     repositories
+  end
+
+  def owned_organization_repositories
+    organization_repositories.select { |r| r.permissions.admin? }
+  end
+
+  def organization_repositories
+    octokit.org_repos(organization_id, per_page: 100)
   end
 end
