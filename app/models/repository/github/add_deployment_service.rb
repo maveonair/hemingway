@@ -1,4 +1,4 @@
-class Repository::Github::AddDeploymentService < Repository::Github::Service
+class Repository::Github::AddDeploymentService < Repository::Github::RepositoryService
   def initialize(user, params)
     super(user)
     @params = params

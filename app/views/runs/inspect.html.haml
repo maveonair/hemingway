@@ -1,10 +1,7 @@
-= content_for(:sub_navigation) do
-  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
-    - n.item octicon('arrow-left'), [@run.repository, @run], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
-    - n.item octicon('code'), [@run.repository, @run]
-
+= render 'repositories/repository_navigation'
+  
 .inspection
   .panel.panel-default
-    .panel-heading= @inspection.file_path
+    .panel-heading= @facade.file_path
     .panel-body
-      = render_code(@content, @inspection)
+      = render_code(@facade.content, @facade.inspection)

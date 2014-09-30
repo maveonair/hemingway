@@ -9,7 +9,7 @@
   %tbody
     - @run.inspections.each do |inspection|
       %tr
-        %td= link_to inspection.file_path, polymorphic_path([:inspect, @run.repository, @run], :file_path => inspection.file_path)
+        %td= link_to inspection.file_path, { controller: :runs, action: :inspect, file_path: inspection.encoded_file_path }
         %td.conventions= inspection.total_conventions
         %td.warnings= inspection.total_warnings
         %td.erros= inspection.total_errors

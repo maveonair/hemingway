@@ -7,6 +7,10 @@ class Run::Inspection
     @file[:path]
   end
 
+  def encoded_file_path
+    Base64.urlsafe_encode64(file_path)
+  end
+
   def offenses
     @offenses ||= @file[:offenses].map do |offense|
       Run::Offense.new(offense)

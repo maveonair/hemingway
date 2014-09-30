@@ -1,20 +1,24 @@
 class RunsController < ApplicationController
   load_and_authorize_resource :repository
-  load_and_authorize_resource :run, through: :repository
 
-  before_action :decorate_run
+  before_action :load_run
+
+  def show
+    @run = @run.decorate
+  end
 
   def inspect
-    @inspection = @run.inspection(params[:file_path])
-    octokit = Octokit::Client.new(access_token: current_user.token)
-    contents = octokit.contents(@run.name, ref: @run.revision, path: params[:file_path])
-
-    @content = Base64.decode64(contents.content)
+    file_path = Base64.urlsafe_decode64(runs_params[:file_path])
+    @facade = InspectionFacade.new(current_user, @run, file_path)
   end
 
   private
 
-  def decorate_run
-    @run = @run.decorate
+  def runs_params
+    params.permit(:file_path)
+  end
+
+  def load_run
+    @run = @repository.latest_run
   end
 end

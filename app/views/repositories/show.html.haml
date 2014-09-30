@@ -1,13 +1,8 @@
-= content_for(:sub_navigation) do
-  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
-    - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back' }
-
-    %li{data: { toggle: 'tooltip', placement: 'bottom', title: 'Run inspection' }}
-      = link_to octicon('microscope'), [:start_run, @repository], method: :post
+= render 'repository_navigation'
 
 .repository
   - if @repository.runs.any?
-    = render 'runs/runs', runs: @repository.runs
+    = render @repository
   - else
     .alert.alert-info{ role: 'alert' }
       %strong Hi again!

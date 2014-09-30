@@ -28,7 +28,7 @@ class RepositoriesController < ApplicationController
   end
 
   def settings
-    @service = Repository::Github::Service.new(current_user, params[:organization_id])
+    @service = Repository::Github::RepositoryService.new(current_user, params[:organization_id])
   end
 
   def start_run

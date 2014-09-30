@@ -1,5 +1,6 @@
 body {
-   padding-top: 100px;
+  background: #f6f6f5;
+  padding-top: 20px;
 }
 
 a:hover {
@@ -16,4 +17,9 @@ a:hover {
 
 .logo {
   max-height: 15px;
+}
+
+.container--main {
+  background: #fff;
+  padding: 0;
 }
