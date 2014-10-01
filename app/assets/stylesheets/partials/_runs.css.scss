@@ -1,33 +1,5 @@
 .runs {
-  table {
-    th.statistic {
-      text-align: center;
-    }
-
-    th:first-child {
-      width: 45px;
-    }
-
-
-    td:first-child {
-      text-align: center;
-    }
-
-    td.commit {
-      text-align: left;
-    }
-
-    td.statistic {
-      width: 100px;
-    }
-
-    td.status {
-      text-align: center;
-    }
-
-    td.actions {
-      width: 100px;
-      text-align: center;
-    }
+  li {
+    margin-bottom: 15px;
   }
 }

@@ -21,7 +21,6 @@ gem 'haml'
 gem 'simple_form', '3.1.0.rc1'
 gem 'draper'
 gem 'navigasmic'
-gem 'chart-js-rails'
 gem 'pygments.rb'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

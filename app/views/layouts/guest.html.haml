@@ -8,7 +8,4 @@
     = csrf_meta_tags
   %body.guest
     .container-fuild
-      - if flash[:notice].present?
-        .alert.alert-success= flash[:notice]
-
       = yield
