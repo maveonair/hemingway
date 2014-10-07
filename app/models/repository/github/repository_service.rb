@@ -13,7 +13,7 @@ class Repository::Github::RepositoryService < Repository::Github::Service
   end
 
   def repositories
-    @repositories ||= owned_repositories
+    @repositories ||= owned_repositories.select { |r| r.language == 'Ruby' }
   end
 
   def repositories_names
