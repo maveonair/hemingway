@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20140816173722) do
   add_index "repositories", ["user_id"], name: "index_repositories_on_user_id", using: :btree
 
   create_table "runs", force: true do |t|
-    t.integer  "sequence"
     t.boolean  "passed"
     t.text     "result"
     t.integer  "repository_id"
