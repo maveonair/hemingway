@@ -29,8 +29,3 @@ table.repositories {
   }
 }
 
-.repository table {
-  .conventions, .warnings, .errors, .fatals, .actions {
-    text-align: right;
-  }
-}

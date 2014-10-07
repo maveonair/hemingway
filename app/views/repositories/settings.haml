@@ -2,6 +2,8 @@
   = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
     - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back'}
 
+%h2 Start following your projects
+
 .row
   .col-md-2
     %ul.nav.nav-pills.nav-stacked
@@ -15,22 +17,16 @@
             = image_tag(organization.avatar_url, class: 'logo')
             =  organization.name
 
-  .col-md-10
-    .repository
-      %h3 Followed
+  .col-md-5
+    %ul.list-group
       - @service.tested_repos.each do |repository|
-        .panel.panel-default
-          .panel-body
-            = link_to repository.name, repository
-            .pull-right
-              = link_to octicon('mark-github'), repository.html_url, target: :blank
-              = link_to octicon('trashcan'), repository, method: :delete, data: { confirm: 'Are you sure?' }
+        %li.list-group-item
+          = link_to repository.name, repository
+          .pull-right
+            = link_to 'Unfollow', repository, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
-      %h3 Not checked
       - @service.untested_repos.each do |name|
-        .panel.panel-default
-          .panel-body
-            = name
-
-            .pull-right
-              = link_to octicon('plus'), polymorphic_path(:repositories, repository: { name: name }), method: :post
+        %li.list-group-item
+          = name
+          .pull-right
+            = link_to 'Follow', polymorphic_path(:repositories, repository: { name: name }), method: :post, class: 'btn btn-default btn-xs'
