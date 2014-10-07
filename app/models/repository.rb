@@ -1,13 +1,12 @@
 class Repository < ActiveRecord::Base
-  belongs_to :user
+  default_scope { order(name: :asc) }
 
+  belongs_to :user
   has_one :credential, dependent: :destroy
   has_many :runs, dependent: :destroy
 
   validates :user, presence: true
   validates :name, presence: true
-
-  default_scope { order(name: :asc) }
 
   delegate :latest_run, to: :runs
 

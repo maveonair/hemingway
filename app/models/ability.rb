@@ -3,7 +3,6 @@ class Ability
 
   def initialize(user)
     @user = user
-
     set_abilities
   end
 

@@ -1,0 +1,7 @@
+---
+macgyver:
+  provider: Github
+  uid: 42
+  token: abcde2345
+  username: macgyver
+  avatar_url: http://placehold.it/100x100

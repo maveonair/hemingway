@@ -1,4 +1,6 @@
 class Run < ActiveRecord::Base
+  default_scope { order(created_at: :desc) }
+
   belongs_to :repository
 
   validates :author, presence: true
@@ -6,8 +8,6 @@ class Run < ActiveRecord::Base
   validates :repository, presence: true
 
   delegate :name, to: :repository
-
-  default_scope { order(created_at: :desc) }
 
   def self.latest_run
     # See default_scope
