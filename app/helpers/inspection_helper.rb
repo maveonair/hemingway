@@ -16,21 +16,30 @@ module InspectionHelper
   end
 
   def highlighted_html(code)
-    encoded = code.dup.force_encoding('UTF-8')
-    Pygments.highlight(encoded, lexer: :ruby)
+    utf8_encoded_code = code.dup.force_encoding('UTF-8')
+    Pygments.highlight(utf8_encoded_code, lexer: :ruby)
   end
 
   def enrich_code_line(inspection, line, index)
-    offense = inspection.offense(index)
+    offenses = inspection.offenses_at(index)
 
-    if offense.present?
-      message = message_content_tag(offense.message, offense.severity)
-      enriched_line = code_line_tag(line, offense.severity)
-
-      "#{message}\n#{enriched_line}"
+    if offenses.any?
+      enriched_code_line(offenses, line)
     else
       line
     end
+  end
+
+  def enriched_code_line(offenses, line)
+    messages = messages(offenses)
+    enriched_line = code_line_tag(line, offenses.first.severity)
+    "#{messages.join('<br>')}\n#{enriched_line}"
+  end
+
+  def messages(offenses)
+    offenses.map do |offense|
+      message_content_tag(offense.message, offense.severity)
+    end.uniq
   end
 
   def message_content_tag(text, severity)

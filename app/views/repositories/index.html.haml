@@ -1,7 +1,5 @@
-= content_for(:sub_navigation) do
-  = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav navbar-right' do |n|
-    - n.item octicon('three-bars'), [:settings, :repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Settings' } 
-
+= render 'navigation'
+  
 .repositories
   - if @repositories.any?
     = render 'repositories'

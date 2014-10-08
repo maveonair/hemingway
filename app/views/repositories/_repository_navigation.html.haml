@@ -1,8 +1,8 @@
 = content_for(:sub_navigation) do
   = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
-    - n.item octicon('pulse'), @repository, data: { toggle: 'tooltip', placement: 'bottom', title: 'Pulse' }
+    - n.item "#{octicon('pulse')} Pulse", @repository
     - if @repository.latest_run.present?
-      - n.item octicon('issue-opened'), [@repository, :code], data: { toggle: 'tooltip', placement: 'bottom', title: 'Offenses' } 
+      - n.item "#{octicon('issue-opened')} Offenses", [@repository, :code]
 
   = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav navbar-right' do |n|
     %li{data: { toggle: 'tooltip', placement: 'bottom', title: 'Refresh' }}

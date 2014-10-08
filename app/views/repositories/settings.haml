@@ -8,13 +8,13 @@
       %li Your projects
       %li
         = link_to [:settings, :repositories] do
-          = image_tag(current_user.avatar_url, class: 'logo')
+          = image_tag(current_user.avatar_url, class: 'logo img-circle')
           = current_user.username
       %li Your organizations
       - @service.organizations.each do |organization|
         %li
           = link_to polymorphic_path([:settings, :repositories], organization_id: organization.id) do
-            = image_tag(organization.avatar_url, class: 'logo')
+            = image_tag(organization.avatar_url, class: 'logo img-circle')
             =  organization.name
 
   .col-md-10
