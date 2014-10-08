@@ -6,6 +6,7 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/**/*'
+    - 'spec/support/shared_connection.rb'
 
 Style/Documentation:
   Enabled: false

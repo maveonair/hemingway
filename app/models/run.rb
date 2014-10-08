@@ -19,10 +19,10 @@ class Run < ActiveRecord::Base
   end
 
   def status
-     return :success if passed?
-     return :failed if statistic.errors?
+    return :success if passed?
+    return :failed if statistic.errors?
 
-     :violated
+    :violated
   end
 
   def summary

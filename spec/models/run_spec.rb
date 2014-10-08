@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Run, type: :model do
   let(:phrase) { repositories(:phrase) }
-  let(:last_run) { runs(:phrase_run)}
+  let(:last_run) { runs(:phrase_run) }
 
   it 'returns the latest run' do
     phrase.runs.create!(author: 'Angus Macgyver', revision: '1234ABCD')
