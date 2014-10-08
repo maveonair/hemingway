@@ -14,7 +14,7 @@ class Repository::Github::AddDeploymentService < Repository::Github::RepositoryS
   end
 
   def repository
-    @repository ||= @user.repositories.build(params).tap do |model|
+    @repository ||= user.repositories.build(params).tap do |model|
       model.credential = Credential.build_with_keys
     end
   end

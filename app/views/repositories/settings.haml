@@ -2,31 +2,34 @@
   = semantic_navigation :primary, :config => :bootstrap, :class => 'nav navbar-nav' do |n|
     - n.item octicon('arrow-left'), [:repositories], data: { toggle: 'tooltip', placement: 'bottom', title: 'Go back'}
 
-%h2 Start following your projects
-
 .row
   .col-md-2
     %ul.nav.nav-pills.nav-stacked
+      %li Your projects
       %li
         = link_to [:settings, :repositories] do
           = image_tag(current_user.avatar_url, class: 'logo')
           = current_user.username
+      %li Your organizations
       - @service.organizations.each do |organization|
         %li
           = link_to polymorphic_path([:settings, :repositories], organization_id: organization.id) do
             = image_tag(organization.avatar_url, class: 'logo')
             =  organization.name
 
-  .col-md-5
-    %ul.list-group
-      - @service.tested_repos.each do |repository|
-        %li.list-group-item
-          = link_to repository.name, repository
-          .pull-right
-            = link_to 'Unfollow', repository, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+  .col-md-10
+    %h4 Start following your projects
+    %p Choose a repository in GitHub from one of your repositories or your organizations.
 
-      - @service.untested_repos.each do |name|
+    %ul.list-group
+      - @service.repositories.each do |repository|
         %li.list-group-item
-          = name
+          - if repository.model.present?
+            = link_to repository.name, repository.model
+          - else
+            = repository.name
           .pull-right
-            = link_to 'Follow', polymorphic_path(:repositories, repository: { name: name }), method: :post, class: 'btn btn-default btn-xs'
+            - if repository.model.present?
+              = link_to 'Unfollow', repository.model, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+            - else
+              = link_to 'Follow', polymorphic_path(:repositories, repository: { name: repository.name }), method: :post, class: 'btn btn-default btn-xs'

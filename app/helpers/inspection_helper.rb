@@ -16,7 +16,8 @@ module InspectionHelper
   end
 
   def highlighted_html(code)
-    Pygments.highlight(code, lexer: :ruby)
+    encoded = code.dup.force_encoding('UTF-8')
+    Pygments.highlight(encoded, lexer: :ruby)
   end
 
   def enrich_code_line(inspection, line, index)

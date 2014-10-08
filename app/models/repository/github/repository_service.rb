@@ -4,20 +4,11 @@ class Repository::Github::RepositoryService < Repository::Github::Service
     @organization_id = organization_id.try(:to_i)
   end
 
-  def tested_repos
-    @tested_repos ||= user.repositories
-  end
-
-  def untested_repos
-    @untested_repos ||= repositories_names - tested_repos.map(&:name)
-  end
-
   def repositories
-    @repositories ||= owned_repositories.select { |r| r.language == 'Ruby' }
-  end
-
-  def repositories_names
-    repositories.map(&:full_name)
+    @repositories ||= ruby_repositories.map do |repository|
+      followed = Repository.find_by_name(repository.full_name)
+      OpenStruct.new(name: repository.full_name, model: followed)
+    end
   end
 
   def organizations
@@ -31,6 +22,10 @@ class Repository::Github::RepositoryService < Repository::Github::Service
   protected
 
   attr_reader :organization_id
+
+  def ruby_repositories
+    @ruby_repositories ||= owned_repositories.select { |r| r.language == 'Ruby' }
+  end
 
   def owned_repositories
     organization_id.present? ? all_owned_organisation_repositories : owned_personal_repositories
