@@ -4,7 +4,7 @@ class Run::Inspection
   end
 
   def file_path
-    @file[:path]
+    file[:path]
   end
 
   def encoded_file_path
@@ -12,7 +12,7 @@ class Run::Inspection
   end
 
   def offenses
-    @offenses ||= @file[:offenses].map do |offense|
+    @offenses ||= file[:offenses].map do |offense|
       Run::Offense.new(offense)
     end
   end
@@ -48,6 +48,8 @@ class Run::Inspection
   end
 
   private
+
+  attr_reader :file
 
   def measurements
     @measurements ||= severities.group_by { |s| s }.map do |k, v|

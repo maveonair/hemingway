@@ -21,15 +21,17 @@ class Run::ChartBar
 
   private
 
+  attr_reader :run
+
   def pixels_in_percentage(value)
     value * 100 / baseline
   end
 
   def baseline
-    @baseline ||= @run.summary.total_offenses.to_f
+    @baseline ||= run.summary.total_offenses.to_f
   end
 
   def statistic
-    @statistic ||= @run.statistic
+    @statistic ||= run.statistic
   end
 end

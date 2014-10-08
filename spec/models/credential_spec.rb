@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Credential, type: :model do
+describe Credential, type: :model do
   it 'creates a credential with keys' do
     credential = Credential.build_with_keys
 

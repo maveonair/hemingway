@@ -1,8 +1,12 @@
-%ul.list-unstyled.runs
-  - @repository.runs.each do |run|
-    %li
-      %strong= "Summary of #{run.revision} (#{run.created_at})"
-      .text-muted
-        = "#{run.summary.total_offenses} offenses"
-        = "in #{run.summary.total_inspected_files} inspected files"
-        = "of #{run.summary.total_files}"
+%table.table.runs
+  %tbody
+    - @repository.runs.each do |run|
+      %tr
+        %td.runs--first
+          = mega_octicon('ruby', "severity-#{run.status}")
+        %td
+          %strong= "Summary of #{run.revision} (#{run.created_at})"
+          .text-muted
+            = "#{run.summary.total_offenses} offenses"
+            = "in #{run.summary.total_inspected_files} inspected files"
+            = "of #{run.summary.total_files}"

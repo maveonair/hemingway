@@ -4,9 +4,13 @@ class Run::Service
   end
 
   def run!
-    return if @repository.locked?
+    return if repository.locked?
 
-    @repository.lock!
-    Run::Worker.perform_async(@repository.id)
+    repository.lock!
+    Run::Worker.perform_async(repository.id)
   end
+
+  private
+
+  attr_reader :repository
 end

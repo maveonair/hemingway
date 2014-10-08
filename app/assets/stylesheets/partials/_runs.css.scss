@@ -1,5 +1,19 @@
-.runs {
-  li {
-    margin-bottom: 15px;
-  }
+.runs > tbody > tr > td {
+  border: 0;
+}
+
+.runs .runs--first {
+  width: 50px;
+}
+
+.runs .severity-success {
+  color: #83AF9B;
+}
+
+.runs .severity-violated {
+  color: #FECEA8;
+}
+
+.runs .severity-failed {
+  color: #FF847C;
 }

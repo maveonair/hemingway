@@ -18,6 +18,13 @@ class Run < ActiveRecord::Base
     where(revision: revision).present?
   end
 
+  def status
+     return :success if passed?
+     return :failed if statistic.errors?
+
+     :violated
+  end
+
   def summary
     @summary ||= Run::Summary.new(parsed_result)
   end

@@ -31,12 +31,14 @@ class Run::Statistic
 
   private
 
+  attr_reader :run
+
   def total_severity(symbol)
     measurement = measurements.select { |m| m.label == symbol.to_s }.first
     measurement.present? ? measurement.value : 0
   end
 
   def severities
-    @severities ||= @run.inspections.map(&:severities).flatten
+    @severities ||= run.inspections.map(&:severities).flatten
   end
 end

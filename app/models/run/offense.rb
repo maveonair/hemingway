@@ -4,19 +4,19 @@ class Run::Offense
   end
 
   def severity
-    @data[:severity]
+    data[:severity]
   end
 
   def message
-    @data[:message]
+    data[:message]
   end
 
   def cop_name
-    @data[:cop_name]
+    data[:cop_name]
   end
 
   def location
-    @data[:location]
+    data[:location]
   end
 
   def line_number
@@ -26,4 +26,8 @@ class Run::Offense
   def column
     location[:column]
   end
+
+  private
+
+  attr_reader :data
 end
