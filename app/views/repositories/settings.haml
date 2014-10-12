@@ -22,15 +22,18 @@
     %p Choose a repository in GitHub from one of your repositories or your organizations.
 
     %ul.list-group
-      - @service.repositories.each do |repository|
-        %li.list-group-item
-          - if repository.model.present?
-            = link_to repository.name, repository.model
-          - else
-            = repository.name
-          .pull-right
-            = octicon('lock') if repository.private?
+      - if @service.repositories?
+        - @service.repositories.each do |repository|
+          %li.list-group-item
             - if repository.model.present?
-              = link_to 'Unfollow', repository.model, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+              = link_to repository.name, repository.model
             - else
-              = link_to 'Follow', polymorphic_path(:repositories, repository: { name: repository.name }), method: :post, class: 'btn btn-default btn-xs'
+              = repository.name
+            .pull-right
+              = octicon('lock') if repository.private?
+              - if repository.model.present?
+                = link_to 'Unfollow', repository.model, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+              - else
+                = link_to 'Follow', polymorphic_path(:repositories, repository: { name: repository.name }), method: :post, class: 'btn btn-default btn-xs'
+      - else
+        .alert.alert-info No ruby repositories are available or you have not the required permission to add web service hooks to a specific repository.

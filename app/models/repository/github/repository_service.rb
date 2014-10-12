@@ -4,6 +4,10 @@ class Repository::Github::RepositoryService < Repository::Github::Service
     @organization_id = organization_id.try(:to_i)
   end
 
+  def repositories?
+    repositories.any?
+  end
+
   def repositories
     @repositories ||= ruby_repositories.map do |repository|
       followed = Repository.find_by_name(repository.full_name)
