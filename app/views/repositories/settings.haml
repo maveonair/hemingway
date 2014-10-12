@@ -29,6 +29,7 @@
           - else
             = repository.name
           .pull-right
+            = octicon('lock') if repository.private?
             - if repository.model.present?
               = link_to 'Unfollow', repository.model, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
             - else

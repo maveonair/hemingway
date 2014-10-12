@@ -51,4 +51,12 @@
     padding: 2px 0 2px 0;
     background-color: rgba(247, 70, 74, 0.25);
   }
+
+  .stats {
+    color: #999;
+
+    .value {
+      font-weight: bold;
+    }
+  }
 }

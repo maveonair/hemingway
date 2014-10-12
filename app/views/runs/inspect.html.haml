@@ -1,7 +1,22 @@
 = render 'repositories/repository_navigation'
 
 .inspection
+  %h2= @facade.file_path
+  - inspection = @facade.inspection
+  %ul.list-inline.stats
+    %li
+      %span.value= inspection.total_conventions
+      Conventions
+    %li
+      %span.value= inspection.total_warnings
+      Warnings
+    %li
+      %span.value= inspection.total_errors
+      Errors
+    %li
+      %span.value= inspection.total_fatals
+      Fatals
+
   .panel.panel-default
-    .panel-heading= @facade.file_path
     .panel-body
       = render_code(@facade.content, @facade.inspection)

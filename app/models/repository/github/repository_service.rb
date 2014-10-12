@@ -7,7 +7,9 @@ class Repository::Github::RepositoryService < Repository::Github::Service
   def repositories
     @repositories ||= ruby_repositories.map do |repository|
       followed = Repository.find_by_name(repository.full_name)
-      OpenStruct.new(name: repository.full_name, model: followed)
+      OpenStruct.new(name: repository.full_name,
+                     model: followed,
+                     private?: repository.private?)
     end
   end
 
