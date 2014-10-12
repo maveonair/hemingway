@@ -35,7 +35,7 @@ class RepositoriesController < ApplicationController
     service = Run::Service.new(@repository)
     service.run!
 
-    redirect_to @repository
+    redirect_to @repository, notice: 'A refresh of this repositoriy is queued. Check back in a few minutes'
   end
 
   private
