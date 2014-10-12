@@ -1,6 +1,6 @@
 # Hemingway
 
-Hemingway is a web application to visualize the results of the static ruby code analyzer [Rubocop](https://github.com/bbatsov/rubocop).
+Hemingway is a web application to inspect the results of the static ruby code analyzer [Rubocop](https://github.com/bbatsov/rubocop).
 
 ![image](doc/images/repositories_index.png)
 
