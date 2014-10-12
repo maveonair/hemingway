@@ -57,7 +57,7 @@ $ bundle exec rails server
 
 ## TODOs
 
-Basically, this is a prototype application
+Basically, this is a prototype application and thus a lot is to do...
 
 * Team Management (a user belongs to one or more teams)
 * Adding Open Source projects
