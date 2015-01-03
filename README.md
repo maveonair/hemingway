@@ -66,7 +66,7 @@ This is a prototype application and thus a lot is to do...
 ## Acknowledgments
 Many thanks to the [Rubocop Team](http://https://github.com/bbatsov/rubocop) for their great work!
 
-Licence
+## Licence
 
 The MIT Licence
 
