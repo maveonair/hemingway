@@ -16,9 +16,7 @@ class Credential < ActiveRecord::Base
   end
 
   def self.build_with_keys
-    Credential.new.tap do |credential|
-      credential.generate_keys
-    end
+    Credential.new.tap(&:generate_keys)
   end
 
   private
