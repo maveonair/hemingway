@@ -9,13 +9,15 @@ class Run < ActiveRecord::Base
 
   delegate :name, to: :repository
 
+  before_create :set_sequence
+
   def self.latest_run
     # See default_scope
     first
   end
 
-  def self.exist?(revision)
-    where(revision: revision).present?
+  def self.revision?(revision)
+    exists?(revision: revision)
   end
 
   def status
@@ -43,5 +45,11 @@ class Run < ActiveRecord::Base
 
   def statistic
     @statistic ||= Run::Statistic.new(self)
+  end
+
+  private
+
+  def set_sequence
+   self.sequence = repository.runs.count + 1
   end
 end

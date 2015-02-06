@@ -1,6 +1,6 @@
 class RepositoriesController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource only: [:create, :settings]
+  skip_load_resource only: :create
 
   def index
     @repositories = RepositoryDecorator.decorate_collection(@repositories)
@@ -8,6 +8,14 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = @repository.decorate
+  end
+
+  def choose_account
+    @service = Repository::Github::RepositoryService.new(current_user, params[:organization_id])
+  end
+
+  def new
+    @service = Repository::Github::RepositoryService.new(current_user, params[:organization_id])
   end
 
   def create
@@ -24,11 +32,7 @@ class RepositoriesController < ApplicationController
     @service = Repository::Github::RemoveDeploymentService.new(current_user, @repository)
     @service.destroy!
 
-    redirect_to [:settings, :repositories], notice: 'Repository was successfuly removed.'
-  end
-
-  def settings
-    @service = Repository::Github::RepositoryService.new(current_user, params[:organization_id])
+    redirect_to :repositories, notice: 'Repository was successfuly unfollowed.'
   end
 
   def start_run
@@ -36,6 +40,9 @@ class RepositoriesController < ApplicationController
     service.run!
 
     redirect_to @repository, notice: 'A refresh of this repositoriy is queued. Check back in a few minutes'
+  end
+
+  def settings
   end
 
   private

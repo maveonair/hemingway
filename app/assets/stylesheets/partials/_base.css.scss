@@ -1,25 +1,15 @@
 body {
   background: #f5f5f5;
-  padding-top: 20px;
 }
 
 a:hover {
   text-decoration: none;
 }
 
-.margin-top-40 {
-  margin-top: 40px;
+.box{
+  padding: 10px;
 }
 
-.flash {
-  margin-top: 10px;
-}
-
-.logo {
-  max-height: 15px;
-}
-
-.container--main {
-  background: #fff;
-  padding: 0;
+.container {
+  max-width: 1000px;
 }

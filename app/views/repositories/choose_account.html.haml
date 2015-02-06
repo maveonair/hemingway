@@ -1,0 +1,19 @@
+%h1.page-header.text-center Select your account or organization
+
+.row
+  = link_to [:new, :repository] do
+    .col-md-3
+      .panel.panel-default.repositories--account
+        .panel-body
+          = image_tag(current_user.avatar_url, class: 'logo img-circle')
+        .panel-footer
+          = current_user.username
+
+  - @service.organizations.each do |organization|
+    = link_to polymorphic_path([:new, :repository], organization_id: organization.id) do
+      .col-md-3
+        .panel.panel-default.repositories--account
+          .panel-body
+            = image_tag(organization.avatar_url, class: 'logo img-circle')
+          .panel-footer
+            =  organization.name

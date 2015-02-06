@@ -1,7 +1,6 @@
 class RunsController < ApplicationController
   load_and_authorize_resource :repository
-
-  before_action :load_run
+  load_and_authorize_resource :run, through: :repository
 
   def show
     @run = @run.decorate
@@ -16,9 +15,5 @@ class RunsController < ApplicationController
 
   def runs_params
     params.permit(:file_path)
-  end
-
-  def load_run
-    @run = @repository.latest_run
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140816173722) do
+ActiveRecord::Schema.define(version: 20141014164659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140816173722) do
     t.integer  "user_id"
     t.string   "html_url"
     t.string   "ssh_url"
+    t.string   "language"
   end
 
   add_index "repositories", ["user_id"], name: "index_repositories_on_user_id", using: :btree
@@ -49,9 +50,8 @@ ActiveRecord::Schema.define(version: 20140816173722) do
     t.string   "revision"
     t.string   "author"
     t.text     "log"
+    t.integer  "sequence"
   end
-
-  add_index "runs", ["repository_id"], name: "index_runs_on_repository_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "provider"

@@ -1,0 +1,14 @@
+= render 'repository_navigation'
+
+.panel.panel-danger
+  .panel-heading Danger Zone
+  .panel-body
+    .row
+      .col-md-10
+        %p
+          %strong Unfollow this repository
+        Once you unfollow a repository, there is no going back. Please be certain.
+      .col-md-2
+        .pull-right
+          = link_to 'Unfollow', @repository, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+

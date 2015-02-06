@@ -4,8 +4,9 @@
   - if @repository.runs.any?
     = render @repository
   - else
-    .alert.alert-info{ role: 'alert' }
-      %strong Hi again!
-      You should probably
-      = link_to 'start', [:start_run, @repository], method: :post, class: 'alert-link'
-      a new inspection for this repository.
+    .panel.panel-default
+      .panel-body
+        %strong Hi again!
+        You should probably
+        = link_to 'start', [:start_run, @repository], method: :post, class: 'alert-link'
+        a new inspection for this repository.

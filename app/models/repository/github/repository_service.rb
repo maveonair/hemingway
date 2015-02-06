@@ -9,12 +9,12 @@ class Repository::Github::RepositoryService < Repository::Github::Service
   end
 
   def repositories
-    @repositories ||= ruby_repositories.map do |repository|
+    @repositories ||= ruby_repositories.map do |repository|      
       followed = Repository.find_by_name(repository.full_name)
-      OpenStruct.new(name: repository.full_name,
-                     model: followed,
-                     private?: repository.private?)
-    end
+      next if followed.present?
+
+      OpenStruct.new(name: repository.full_name, private?: repository.private?)
+    end.compact
   end
 
   def organizations

@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  get 'welcome' => 'welcome#index', as: :welcome
-  get "/auth/:provider/callback" => "sessions#create"
+  get 'welcome', to: 'welcome#index', as: :welcome
+  get '/auth/:provider/callback', to: 'sessions#create'
   get '/sessions/new'
-  get "/signout" => "sessions#destroy", as: :sign_out
+  get "/logout" => "sessions#destroy", as: :logout
 
-  resources :repositories, except: :new do
-    get :code, :controller => 'runs', action: :show
-    get 'code/:file_path' => 'runs', action: :inspect
-
+  resources :repositories do
     resources :runs, only: :show do
       member do
         get :inspect
@@ -15,10 +12,11 @@ Rails.application.routes.draw do
     end
 
     collection do
-      get :settings
+      get :choose_account
     end
 
     member do
+      get :settings
       post :start_run
     end
   end

@@ -18,8 +18,8 @@ class Ability
   end
 
   def set_repositories_ability
-    can [:create, :settings], Repository
-    can [:read, :destroy], Repository, user_id: @user.id
+    can [:create, :choose_account], Repository
+    can [:read, :destroy, :settings], Repository, user_id: @user.id
 
     can :start_run, Repository do |repository|
       repository.try(:user_id) == @user.id

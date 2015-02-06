@@ -18,7 +18,7 @@ class Run::Worker
   def run!
     last_commit = git_wrapper.clone
 
-    if Run.exist?(last_commit.revision)
+    if Run.revision?(last_commit.revision)
       logger.info("Repo: #{@repository.name} - Known revision: #{last_commit.revision}")
       return
     end

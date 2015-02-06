@@ -1,0 +1,15 @@
+.page-header.text-center
+  %h1 Select project
+  %p.text-muted Choose a repository in GitHub from one of your repositories or your organizations.
+
+.col-md-8.col-md-offset-2
+  %ul.list-group
+    - if @service.repositories?
+      - @service.repositories.each do |repository|
+        %li.list-group-item
+          = repository.name
+          .pull-right
+            = octicon('lock') if repository.private?
+            = link_to 'Follow', polymorphic_path(:repositories, repository: { name: repository.name }), method: :post, class: 'btn btn-default btn-xs'
+    - else
+      .alert.alert-info No ruby repositories are available or you have not the required permission to add web service hooks to a specific repository.

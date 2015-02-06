@@ -1,5 +1,5 @@
 - if flash[:notice].present?
-  .alert.alert-success{role: 'alert'}= flash[:notice]
+  %p.box.bg-success=flash[:notice]
 
 - if flash[:alert].present?
-  .alert.alert-danger{role: 'alert'}= flash[:alert]
+  %p.box.bg-danger= flash[:alert]

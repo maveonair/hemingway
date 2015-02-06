@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.0'
 
 gem 'pg'
 
@@ -18,7 +18,7 @@ gem 'autoprefixer-rails'
 gem 'haml'
 
 # Views
-gem 'simple_form', '3.1.0.rc1'
+gem 'simple_form', '~> 3.1.0'
 gem 'draper'
 gem 'navigasmic'
 gem 'pygments.rb'
@@ -52,10 +52,12 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'rspec-rails'
+  gem 'pry-remote'
+  gem 'pry-doc'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'mocha'
 end

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize, only: [:create, :destroy]
+  skip_before_action :authorize
+  layout 'guest', only: :failure
 
   def create
     @sign_in = User::SignIn.new(request.env['omniauth.auth'])

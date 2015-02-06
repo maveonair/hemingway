@@ -29,3 +29,27 @@ table.repositories {
   }
 }
 
+.repositories--header {
+  margin-bottom: 10px;
+
+  .actions {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+  }
+}
+
+.repository--title {
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+
+.repositories--account {
+  text-align: center;
+  
+  .logo {
+    max-height: 100px;
+  }
+}

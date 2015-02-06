@@ -1,0 +1,11 @@
+%nav.navbar.navbar-inverse.navbar-static-top
+  .container
+    .navbar-header
+      =link_to :root, class: 'navbar-brand' do
+        Hemingway
+
+    %ul.nav.navbar-nav
+      %li= link_to 'Projects', :repositories
+
+    %ul.nav.navbar-nav.navbar-right
+      %li= link_to 'Log out', :logout

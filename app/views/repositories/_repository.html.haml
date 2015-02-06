@@ -1,12 +1,26 @@
-%table.table.runs
-  %tbody
-    - @repository.runs.each do |run|
+- if @repository.latest_run.present?
+  .text-right
+    %ul.list-unstyled
+      %li= link_to "#{octicon('sync')} Inspect last revision".html_safe, [:start_run, @repository], method: :post
+
+.runs.panel.panel-default
+  %table.table.runs
+    %thead
       %tr
-        %td.runs--first
-          = mega_octicon('ruby', "severity-#{run.status}")
-        %td
-          %strong= "Summary of #{run.revision} (#{run.created_at})"
-          .text-muted
+        %th Run
+        %th Status
+        %th Revision
+        %th Summary
+        %th
+    %tbody
+      - @repository.runs.each do |run|
+        %tr
+          %td.run= link_to run.sequence, [@repository, run]
+          %td.status
+            = octicon('ruby', "severity-#{run.status}")
+          %td= run.revision
+          %td
             = "#{run.summary.total_offenses} offenses"
             = "in #{run.summary.total_inspected_files} inspected files"
             = "of #{run.summary.total_files}"
+          %td= run.created_at

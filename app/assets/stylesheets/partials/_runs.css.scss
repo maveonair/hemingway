@@ -1,7 +1,3 @@
-.runs > tbody > tr > td {
-  border: 0;
-}
-
 .runs .runs--first {
   width: 50px;
 }
@@ -16,4 +12,8 @@
 
 .runs .severity-failed {
   color: #FF847C;
+}
+
+.run .run--sequence-switcher {
+  margin-bottom: 15px;
 }

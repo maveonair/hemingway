@@ -6,6 +6,6 @@ class RunDecorator < Draper::Decorator
   end
 
   def created_at
-    h.time_ago_in_words(model.created_at)
+    "#{h.time_ago_in_words(model.created_at)} ago"
   end
 end

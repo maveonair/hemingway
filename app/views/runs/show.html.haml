@@ -1,9 +1,14 @@
 = render 'repositories/repository_navigation'
 
-.inspections
-  - if @run.inspections.any?
-    = render 'inspections'
-  - else
-    .alert.alert-info{ role: 'alert' }
-      %strong Hooray!
-      Everything is fine!
+.run
+  .run--sequence-switcher
+    = sequence_switcher(@run)
+
+  .panel.panel-default.inspections
+    - if @run.inspections.any?
+      = render 'inspections'
+    - else
+      .panel-body
+        .alert.alert-info{ role: 'alert' }
+          %strong Hooray!
+          Everything is fine!
