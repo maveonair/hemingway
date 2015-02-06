@@ -1,7 +1,7 @@
 - if @repository.latest_run.present?
   .text-right
     %ul.list-unstyled
-      %li= link_to "#{octicon('sync')} Inspect last revision".html_safe, [:start_run, @repository], method: :post
+      %li= link_to "#{octicon('sync')} Inspect last revision".html_safe, [:start_run, @repository], method: :post, class: 'btn btn-link'
 
 .runs.panel.panel-default
   %table.table.runs
