@@ -1,10 +1,14 @@
 class InspectionFacade
-  attr_reader :file_path
+  attr_reader :file_path, :run
 
   def initialize(user, run, file_path)
     @user = user
     @run = run
     @file_path = file_path
+  end
+
+  def repository
+    run.repository
   end
 
   def inspection
@@ -18,7 +22,7 @@ class InspectionFacade
 
   private
 
-  attr_reader :user, :run
+  attr_reader :user
 
   def content_service
     @content_service ||= Repository::Github::ContentService.new(user)

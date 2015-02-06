@@ -1,5 +1,9 @@
 = render 'repositories/repository_navigation'
 
+%ol.breadcrumb
+  %li= link_to 'Overview', repository_run_path(@facade.repository, @facade.run)
+  %li.active= @facade.file_path
+
 .inspection
   .panel.panel-default
     .panel-body
