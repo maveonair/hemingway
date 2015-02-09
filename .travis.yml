@@ -1,6 +1,7 @@
 language: ruby
 before_script:
 - psql -c 'create database hemingway_test;' -U postgres
+- cp config/secrets.example.yml config/secrets.yml
 rvm:
 - 2.1.5
 - 2.2.0
