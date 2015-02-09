@@ -1,6 +1,8 @@
 ---
 phrase:
   name: maveonair/phrase-droid
+  user: maveonair
 kado:
   name: maveonair/kado
   locked: true
+  user: maveonair

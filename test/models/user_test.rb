@@ -16,12 +16,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'finds an existing user' do
-    macgyver = users(:macgyver)
+    maveonair = users(:maveonair)
 
-    params = { provider: macgyver.provider, uid: macgyver.uid }
+    params = { provider: maveonair.provider, uid: maveonair.uid }
     sign_in = User::SignIn.new(params)
 
-    assert sign_in.user.username, macgyver.username
+    assert sign_in.user.username, maveonair.username
   end
 end
 

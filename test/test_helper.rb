@@ -7,8 +7,16 @@ require 'mocha/mini_test'
 reporter_options = { color: true }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
 
+OmniAuth.config.test_mode = true
+
 class ActiveSupport::TestCase
   fixtures :all
+
+  def login(fixture_name)
+    user = users(fixture_name)
+    session[:user_id] = user.id
+    user
+  end
 
   def read_fixture(filename)
     file_path = Rails.root.join('test', 'fixtures', filename)

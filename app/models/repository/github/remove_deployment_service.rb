@@ -5,13 +5,17 @@ class Repository::Github::RemoveDeploymentService < Repository::Github::Reposito
   end
 
   def destroy!
-    octokit.remove_deploy_key(repository.name, credentials.external_key_id)
+    remove_deploy_key!
     repository.destroy!
   end
 
   private
 
   attr_reader :repository
+
+  def remove_deploy_key!
+    octokit.remove_deploy_key(repository.name, credentials.external_key_id)
+  end
 
   def credentials
     repository.credential

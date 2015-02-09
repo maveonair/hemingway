@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20141014164659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "credentials", force: true do |t|
-    t.string   "encrypted_passphrase"
+  create_table "credentials", force: :cascade do |t|
+    t.string   "encrypted_passphrase",  limit: 255
     t.text     "encrypted_private_key"
     t.text     "public_key"
     t.integer  "repository_id"
@@ -28,39 +28,40 @@ ActiveRecord::Schema.define(version: 20141014164659) do
 
   add_index "credentials", ["repository_id"], name: "index_credentials_on_repository_id", using: :btree
 
-  create_table "repositories", force: true do |t|
-    t.string   "name"
+  create_table "repositories", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "locked",     default: false
+    t.boolean  "locked",                 default: false
     t.integer  "user_id"
-    t.string   "html_url"
-    t.string   "ssh_url"
-    t.string   "language"
+    t.string   "html_url",   limit: 255
+    t.string   "ssh_url",    limit: 255
   end
 
   add_index "repositories", ["user_id"], name: "index_repositories_on_user_id", using: :btree
 
-  create_table "runs", force: true do |t|
+  create_table "runs", force: :cascade do |t|
     t.boolean  "passed"
     t.text     "result"
     t.integer  "repository_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "revision"
-    t.string   "author"
+    t.string   "revision",      limit: 255
+    t.string   "author",        limit: 255
     t.text     "log"
     t.integer  "sequence"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "username"
+  add_index "runs", ["repository_id"], name: "index_runs_on_repository_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.string   "username",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "token"
-    t.string   "avatar_url"
+    t.string   "token",      limit: 255
+    t.string   "avatar_url", limit: 255
   end
 
 end

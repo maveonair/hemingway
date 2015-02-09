@@ -9,7 +9,7 @@ class Repository::Github::RepositoryService < Repository::Github::Service
   end
 
   def repositories
-    @repositories ||= ruby_repositories.map do |repository|      
+    @repositories ||= ruby_repositories.map do |repository|
       followed = Repository.find_by_name(repository.full_name)
       next if followed.present?
 

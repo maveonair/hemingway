@@ -48,6 +48,8 @@ group :development do
   gem 'letter_opener'
   gem 'meta_request'
   gem 'sinatra', '>= 1.3.0', :require => nil
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :development, :test do
