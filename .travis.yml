@@ -1,4 +1,4 @@
-nguage: ruby
+language: ruby
 before_script:
 - psql -c 'create database hemingway_test;' -U postgres
 rvm:
