@@ -1,4 +1,6 @@
 nguage: ruby
+before_script:
+- psql -c 'create database hemingway_test;' -U postgres
 rvm:
 - 2.1.5
 - 2.2.0

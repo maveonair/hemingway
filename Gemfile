@@ -20,7 +20,6 @@ gem 'haml'
 # Views
 gem 'simple_form', '~> 3.1.0'
 gem 'draper'
-gem 'navigasmic'
 gem 'pygments.rb'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
