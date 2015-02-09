@@ -13,8 +13,7 @@ gem 'ejs'
 gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'haml'
 
 # Views
