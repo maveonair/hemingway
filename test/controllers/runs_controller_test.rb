@@ -17,7 +17,7 @@ class RunsControllerTest < ActionController::TestCase
 
     phrase = repositories(:phrase)
     run = runs(:phrase_run)
-    inspection = run.inspections.first
+    inspection = run.inspection('bin/phrase-droid')
 
     get :inspect, id: run.id, repository_id: phrase, file_path: inspection.encoded_file_path
 
