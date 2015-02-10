@@ -3,8 +3,8 @@ class User::SignIn
     @params = params
   end
 
-  def user
-    find_user || create_with_omniauth
+  def save!
+    find_user || create_with_omniauth!
   end
 
   private
@@ -15,7 +15,7 @@ class User::SignIn
     User.find_by_provider_and_uid(provider, uid)
   end
 
-  def create_with_omniauth
+  def create_with_omniauth!
     User.new.tap do |user|
       user.provider = provider
       user.uid = uid
