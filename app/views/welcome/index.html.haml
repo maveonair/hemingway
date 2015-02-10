@@ -3,5 +3,7 @@
     %h1 Hemingway
     %p A web application to inspect the results of the static ruby code analyzer Rubocop.
 
+    .text-left= render 'shared/flash'
+
     .guest--sign-in
       = link_to "#{octicon('mark-github')} Sign in with Github".html_safe, "/auth/github"

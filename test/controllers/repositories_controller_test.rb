@@ -13,7 +13,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:repositories)
   end
 
-  test 'shows a repository' do
+  test 'show a repository' do
     phrase = repositories(:phrase)
     get :show, id: phrase.id
 

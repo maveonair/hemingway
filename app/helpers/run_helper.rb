@@ -31,5 +31,4 @@ module RunHelper
   def run_from_sequence(repository, sequence)
     repository.runs.where(sequence: sequence).first
   end
-
 end

@@ -3,6 +3,7 @@ phrase_run:
   author: Fabian Mettler
   revision: ABCD1234
   repository: phrase
+  sequence: 1
   result: >
     {
       "metadata": {

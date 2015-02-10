@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome', to: 'welcome#index', as: :welcome
-  get '/auth/:provider/callback', to: 'sessions#create'
   get '/sessions/new'
-  get "/logout" => "sessions#destroy", as: :logout
+  get '/logout', to: 'sessions#destroy', as: :logout
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: 'sessions#failure'
 
   resources :repositories do
     resources :runs, only: :show do
