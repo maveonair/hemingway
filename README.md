@@ -61,7 +61,6 @@ This is a prototype application and thus a lot is to do...
 * Team Management (a user belongs to one or more teams)
 * Adding Open Source projects
 * Web Hook to receive push notifications from GitHub
-* Testing
 
 ## Acknowledgments
 Many thanks to the [Rubocop Team](http://https://github.com/bbatsov/rubocop) for their great work!
