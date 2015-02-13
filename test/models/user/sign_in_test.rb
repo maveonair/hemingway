@@ -10,7 +10,7 @@ class User::SignInTest < ActiveSupport::TestCase
     sign_in = User::SignIn.new(params)
     user = sign_in.save!
 
-    assert 'murdock', user.username
+    assert_match 'murdock', user.username
   end
 
   test 'return an existing user' do
@@ -18,6 +18,6 @@ class User::SignInTest < ActiveSupport::TestCase
     sign_in = User::SignIn.new({ provider: maveonair.provider, uid: maveonair.uid })
     user = sign_in.save!
 
-    assert maveonair.username, user.username
+    assert_match maveonair.username, user.username
   end
 end

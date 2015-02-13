@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     @sign_in = User::SignIn.new(request.env['omniauth.auth'])
-    user = @sing_in.save!
+    user = @sign_in.save!
     session[:user_id] = user.id
 
     redirect_to :repositories, notice: 'Signed in!'

@@ -24,9 +24,7 @@ class Run::Statistic
   end
 
   def measurements
-    @measurements ||= severities.group_by { |s| s }.map do |k, v|
-      OpenStruct.new(label: k, value: v.count)
-    end
+    @measurements ||= Run::Measurement.build(severities)
   end
 
   private

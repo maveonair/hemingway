@@ -3,9 +3,12 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/reporters'
 require 'mocha/mini_test'
+require 'codeclimate-test-reporter'
 
 reporter_options = { color: true }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
+
+CodeClimate::TestReporter.start
 
 OmniAuth.config.test_mode = true
 

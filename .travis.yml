@@ -5,3 +5,7 @@ before_script:
 rvm:
 - 2.1.5
 - 2.2.0
+addons:
+  code_climate:
+    repo_token:
+      secure: "KUgOZx+EzPB8kEpx5ChmEOALMYJSpWmDhAbtw0sSrhFbI/4UUfah0G1B9dfHP+7o6Wg4QPVuiGRjLyTxI4xmpGo44tw+oX75NIXCufFNjcHQXsYp60Q0YnZqr6DJWe7vzV8SiV4VVd/xaDd1QMP66yATOh7GfRB7g/9sRdc1FOU="

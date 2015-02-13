@@ -20,16 +20,6 @@ class RunTest < ActiveSupport::TestCase
 
     assert Run.revision?('1234ABCD')
   end
-
-  test 'return the summary of a run' do
-    last_run = runs(:phrase_run)
-    summary = last_run.summary
-
-    assert summary.offenses?
-    assert summary.total_offenses, 56
-    assert summary.total_files, 17
-    assert summary.total_inspected_files, 17
-  end
 end
 
 
