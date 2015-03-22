@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def octicon(code, css_class = nil)  
+  def octicon(code, css_class = nil)
     content_tag :span, '', class: "octicon #{octicon_class(code)} #{css_class}"
   end
 
