@@ -7,7 +7,7 @@ class Run::Service
     return if repository.locked?
 
     repository.lock!
-    Run::Worker.perform_async(repository.id)
+    RunJob.perform_later(repository.id)
   end
 
   private

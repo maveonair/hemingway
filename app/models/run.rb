@@ -50,6 +50,6 @@ class Run < ActiveRecord::Base
   private
 
   def set_sequence
-   self.sequence = repository.runs.count + 1
+    self.sequence = repository.runs.count + 1
   end
 end

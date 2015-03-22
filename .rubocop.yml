@@ -6,7 +6,9 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/**/*'
-    - 'spec/support/shared_connection.rb'
+    - 'test/**/*'
+    - '**/Gemfile'
+    - '**/Guardfile'
 
 Style/Documentation:
   Enabled: false
@@ -14,5 +16,5 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Style/LineLength:
+Metrics/LineLength:
   Max: 100

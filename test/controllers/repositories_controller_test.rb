@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class RepositoriesControllerTest < ActionController::TestCase
-
   def setup
     login(:maveonair)
   end
@@ -65,12 +64,12 @@ class RepositoriesControllerTest < ActionController::TestCase
   end
 
   test 'start a run' do
-     Run::Service.any_instance.stubs(:run!)
-     phrase = repositories(:phrase)
+    Run::Service.any_instance.stubs(:run!)
+    phrase = repositories(:phrase)
 
-     post :start_run, id: phrase.id
+    post :start_run, id: phrase.id
 
-     assert_redirected_to phrase
+    assert_redirected_to phrase
   end
 
   test 'access project settings' do

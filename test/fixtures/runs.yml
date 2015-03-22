@@ -4,6 +4,7 @@ phrase_run:
   revision: ABCD1234
   repository: phrase
   sequence: 1
+  log: initial commit
   result: >
     {
       "metadata": {

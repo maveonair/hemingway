@@ -1,7 +1,5 @@
-class Run::Worker
-  include Sidekiq::Worker
-
-  sidekiq_options retry: false
+class RunJob < ActiveJob::Base
+  queue_as :default
 
   def perform(repository_id)
     @repository = Repository.find(repository_id)

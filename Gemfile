@@ -24,12 +24,12 @@ gem 'pygments.rb'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Authentication, Authorization
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 1.9'
-gem "omniauth-github", '1.1.2'
+gem 'omniauth-github', '1.1.2'
 gem 'octokit', '~> 3.0'
 gem 'attr_encrypted', '~> 1.3.2'
 gem 'sshkey'
@@ -45,7 +45,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'meta_request'
-  gem 'sinatra', '>= 1.3.0', :require => nil
+  gem 'sinatra', '>= 1.3.0', require: nil
   gem 'guard'
   gem 'guard-minitest'
 end
